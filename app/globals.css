@@ -24,3 +24,11 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); } /* පින්තූරය 15% කින් ලොකු වෙනවා */
+}
+
+.animate-slow-zoom {
+  animation: slowZoom 15s ease-in-out infinite alternate;
+}

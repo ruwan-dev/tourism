@@ -1,26 +1,35 @@
-// src/components/Navbar.tsx
 "use client";
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false); // Mobile Menu Toggle
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Tours Dropdown Toggle
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
     <nav className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
           
-          {/* Logo Section */}
+          {/* Logo & Title Section */}
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-extrabold text-blue-950 tracking-wider">
-              TRAVELLING<span className="text-amber-500">THRILLS</span>
+            <Link href="/" className="flex items-center">
+              {/* මෙතැනදී logo-title.jpg එක භාවිතා කර ඇත */}
+              <div className="relative w-40 h-16"> 
+                <Image 
+                  src="/logo-title.png" 
+                  alt="Travelling Thrills" 
+                  fill 
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </Link>
           </div>
 
-          {/* Desktop Menu (Laptop/Desktop සඳහා ලොකු Screen වල පෙනෙන) */}
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8 font-medium text-gray-700">
             <Link href="/" className="hover:text-blue-600 transition">Home</Link>
             <Link href="/#about" className="hover:text-blue-600 transition">About Us</Link>
@@ -49,7 +58,7 @@ export default function Navbar() {
             <Link href="/contact" className="bg-blue-950 text-white px-5 py-2 rounded-md hover:bg-blue-900 transition">Contact Us</Link>
           </div>
 
-          {/* Mobile Menu Button (Phone වලදී විතරක් පෙනෙන Hamburger බටන් එක) */}
+          {/* Mobile Menu Button */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -61,7 +70,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Drawer (Phone වලදී බටන් එක එබුවම පල්ලෙහාට පාත්වෙන Menu එක) */}
+      {/* Mobile Menu Drawer */}
       {isOpen && (
         <div className="md:hidden bg-white border-t py-4 px-6 space-y-4 shadow-inner flex flex-col font-medium text-gray-700">
           <Link href="/" onClick={() => setIsOpen(false)} className="hover:text-blue-600">Home</Link>
