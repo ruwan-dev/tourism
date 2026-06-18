@@ -38,18 +38,19 @@ export default function HeroSlider() {
           key={index}
           className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"}`}
         >
-          {/* Background Image with Slow Zoom Animation (අකුරු Zoom වීම වළක්වා ඇත) */}
+          {/* Background Image */}
           <div
             className={`absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-out ${index === currentSlide ? "scale-110" : "scale-100"}`}
             style={{ backgroundImage: `url('${slide.bg}')` }}
           />
           
-          {/* Dark Overlay (පින්තූරයට අඳුරු ස්වභාවයක් ලබා දීම) */}
+          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/40" />
 
-          {/* Text Content (නව අකුරු රටාවන් සහිතව) */}
+          {/* Text Content */}
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold mb-4 tracking-widest uppercase drop-shadow-xl">
+            {/* මෙහි font-serif ඉවත් කර font-extrabold යොදා ඇත */}
+            <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-widest uppercase drop-shadow-xl">
               {slide.title}
             </h1>
             <p className="text-xl md:text-3xl font-light italic tracking-wide max-w-2xl text-gray-200 drop-shadow-md">
