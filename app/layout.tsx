@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins ,Caveat} from "next/font/google";
 import "./globals.css";
 
 // Navbar එක මෙතනින් Import කරගන්න ඕනේ
@@ -10,7 +10,7 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"], 
 });
-
+const caveat = Caveat({ subsets: ["latin"], weight: ["700"] }); // 2. Caveat setup කරන්න
 export const metadata: Metadata = {
   metadataBase: new URL("https://tourism-six-sepia.vercel.app"), // ඔයාගේ Vercel Link එක
   title: "Travelling Thrills | Best Tours & Experiences in Sri Lanka",

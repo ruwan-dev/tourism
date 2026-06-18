@@ -2,13 +2,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import localFont from "next/font/local"; // Local font import කළා
+
+// public/fonts/travel-font.ttf හි ඇති exact ෆොන්ට් එක ලෝඩ් කිරීම
+const customTravelFont = localFont({
+  src: "../public/fonts/travelf1.otf", // ෆොන්ට් ෆයිල් එක තියෙන තැන
+  display: "swap",
+});
 
 export default function HeroSlider() {
   const slides = [
     {
-      title: "Explore",
+      title: "Travel & Adventure",
       subtitle: "Discover hidden wonders at every step",
-      bg: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600"
+      bg: "/slide2.png"
     },
     {
       title: "Experience",
@@ -18,7 +25,7 @@ export default function HeroSlider() {
     {
       title: "Engage",
       subtitle: "Connect with communities, create unforgettable memories",
-      bg: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600"
+      bg: "/slide1.png"
     }
   ];
 
@@ -49,8 +56,8 @@ export default function HeroSlider() {
 
           {/* Text Content */}
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
-            {/* මෙහි font-serif ඉවත් කර font-extrabold යොදා ඇත */}
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-widest uppercase drop-shadow-xl">
+            {/* මෙතැනදී අපේ අලුත් exact local font එක ලබා දී ඇත */}
+            <h1 className={`${customTravelFont.className} text-6xl md:text-9xl font-normal mb-4 tracking-wide drop-shadow-2xl text-white`}>
               {slide.title}
             </h1>
             <p className="text-xl md:text-3xl font-light italic tracking-wide max-w-2xl text-gray-200 drop-shadow-md">
