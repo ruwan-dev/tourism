@@ -8,21 +8,12 @@ export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
   const [isFading, setIsFading] = useState(false);
 
-  // තැනින් තැන මතු වීම සඳහා (Random) කාල පරතරයන් 15ක් (තත්පර වලින්)
-  const revealDelays = [
-    0.2, 1.1, 0.5, 1.4, 0.8, 
-    1.3, 0.1, 0.9, 1.5, 0.4, 
-    1.2, 0.7, 1.0, 0.3, 0.6
-  ];
-
   useEffect(() => {
-    // තත්පර 3 කින් පසු Preloader එක සම්පූර්ණයෙන්ම ඉවත් වීම
+    // කාලය තත්පර 6 (6000ms) දක්වා වැඩි කළා, Animation එක සම්පූර්ණ වීමට ඉඩ දීම සඳහා
     const timer = setTimeout(() => {
       setIsFading(true);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-    }, 3000);
+      setTimeout(() => setIsLoading(false), 700);
+    }, 6000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -31,29 +22,40 @@ export default function Preloader() {
 
   return (
     <>
-      {/* Component එක ඇතුළතම අදාළ CSS Animation එක ලබා දීම */}
       <style>{`
-        @keyframes hideBlock {
+        .se-reveal {
+          opacity: 0;
+          
+          -webkit-mask-image: linear-gradient(to bottom right, rgba(0,0,0,0) 40%, rgba(0,0,0,1) 60%);
+          mask-image: linear-gradient(to bottom right, rgba(0,0,0,0) 40%, rgba(0,0,0,1) 60%);
+          
+          -webkit-mask-size: 300% 300%;
+          mask-size: 300% 300%;
+          
+          /* වේගය අඩු කිරීම: මෙතැන 3.5s වෙනුවට 5s ලබා දී ඇත (තවත් Slow කර ඇත) */
+          animation: seFadeReveal 8s ease-out forwards;
+          
+          animation-delay: 0.2s; 
+        }
+
+        @keyframes seFadeReveal {
           0% {
-            opacity: 1;
-            transform: scale(1);
+            opacity: 1; 
+            -webkit-mask-position: 0% 0%;
+            mask-position: 0% 0%;
           }
           100% {
-            opacity: 0;
-            transform: scale(0);
+            opacity: 1;
+            -webkit-mask-position: 100% 100%;
+            mask-position: 100% 100%;
           }
-        }
-        .block-anim {
-          animation: hideBlock 0.5s ease-out forwards;
         }
       `}</style>
 
       <div 
-        className={`fixed inset-0 z-[100] bg-white flex items-center justify-center transition-opacity duration-500 ${isFading ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+        className={`fixed inset-0 z-[100] bg-white flex items-center justify-center transition-opacity duration-700 ${isFading ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
-        <div className="relative w-56 h-24 md:w-72 md:h-32">
-          
-          {/* 1. ප්‍රධාන Logo එක */}
+        <div className="relative w-56 h-24 md:w-72 md:h-32 se-reveal">
           <Image 
             src="/logo.png" 
             alt="Travelling Thrills Loading..." 
@@ -61,20 +63,6 @@ export default function Preloader() {
             className="object-contain"
             priority
           />
-
-          {/* 2. තැනින් තැන මතු කරන Grid එක (සුදු කොටු 15) */}
-          <div className="absolute inset-0 grid grid-cols-5 grid-rows-3 z-10">
-            {revealDelays.map((delay, index) => (
-              <div 
-                key={index}
-                className="bg-white w-full h-full block-anim"
-                style={{ 
-                  animationDelay: `${delay}s` 
-                }}
-              />
-            ))}
-          </div>
-          
         </div>
       </div>
     </>
