@@ -1,0 +1,54 @@
+{
+  "multidayTours": [
+    {
+      "title": "Classic Sri Lanka",
+      "price": 150,
+      "duration": "7 Days",
+      "host": "Saman",
+      "image": "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000",
+      "description": "Discover hidden wonders at every step in this classic tour around Sri Lanka.",
+      "itinerary": [
+        { "title": "Day 1 - Arrival", "desc": "Welcome to Sri Lanka and transfer to hotel." },
+        { "title": "Day 2 - Sigiriya", "desc": "Climb the ancient Sigiriya Rock Fortress." }
+      ]
+    },
+    {
+      "title": "Best of Thrills",
+      "price": 180,
+      "duration": "5 Days",
+      "host": "Hashan",
+      "image": "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1000",
+      "description": "An adventurous journey for thrill seekers including hiking, rafting, and camping.",
+      "itinerary": [
+        { "title": "Day 1 - Knuckles", "desc": "Start the hike in the Knuckles mountain range." }
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Explore Ella in deep – Highlights and Hidden wonders of Ella",
+      "price": 75,
+      "duration": "8 Hours",
+      "host": "Kasun",
+      "image": "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1000",
+      "description": "Explore Ella's Tea Heritage, Hidden Nature, Culture and Local Life.",
+      "itinerary": [
+        { "title": "Sunrise Hike", "desc": "Witness a breathtaking sunrise at Little Adam's peak" },
+        { "title": "Nature Walk", "desc": "Be familiar with flora and fauna. A story time" }
+      ]
+    }
+  ],
+  "uniqueExperiences": [
+    {
+      "title": "Hidden Waterfall Hunting",
+      "price": 50,
+      "duration": "4 Hours",
+      "host": "Nimal",
+      "image": "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1000",
+      "description": "Find the most secret and beautiful waterfalls hidden in the upcountry.",
+      "itinerary": [
+        { "title": "Morning Trek", "desc": "Trek through the dense forest to find the first waterfall." }
+      ]
+    }
+  ]
+}

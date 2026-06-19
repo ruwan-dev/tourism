@@ -1,44 +1,13 @@
 // src/app/tours/[slug]/page.tsx
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import toursData from "@/data/tours.json"; // JSON eka import karanawa
 
-// URL Slug එක හදන Function එක
+// URL Slug eka hadana Function eka
 const slugify = (text: string) =>
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 
-// ඔයාගේ Tours වල සම්පූර්ණ Data ටික
-const allTours = [
-  // Multi-day Tours
-  { title: "Classic Sri Lanka", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Multi-day Tour", price: 450 },
-  { title: "Best of Thrills", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Multi-day Tour", price: 500 },
-  { title: "Tea and Heritage", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Multi-day Tour", price: 350 },
-  { title: "Tropical Treasures - Exploring Sri Lanka's Biodiversity", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Multi-day Tour", price: 600 },
-  { title: "Less Travelled", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Multi-day Tour", price: 400 },
-  { title: "Beach Bliss and Coastal Delights", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Multi-day Tour", price: 550 },
-  { title: "Tropical Tweets- Sri Lanka Birdwatching Adventure", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Multi-day Tour", price: 420 },
-  { title: "Craft Your Journey: Tailor-Made Adventures in Sri Lanka", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Multi-day Tour", price: 700 },
-
-  // Day Experiences
-  { title: "Explore Ella in deep – Highlights and Hidden wonders of Ella", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 80 },
-  { title: "Art of Ceylon Tea – a technical tea tour", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Day Experience", price: 60 },
-  { title: "Ella cycling tour – Scenic 22km ride to less traveled Ella", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Day Experience", price: 90 },
-  { title: "Wildlife Safari – Explore wildlife all over Sri Lanka", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Day Experience", price: 120 },
-  { title: "Ella Rock Hike – Sunrise hike to the tallest peak in Ella", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 50 },
-  { title: "Hike in Pekoe Trail – Explore the wonders of Sri Lanka’s Longest hike", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Day Experience", price: 75 },
-  { title: "Lipton seat and Tea village hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Day Experience", price: 65 },
-  { title: "Paddy cultural tour", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Day Experience", price: 55 },
-  { title: "Hiking at Pekoe Trail", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 70 },
-
-  // Unique Experiences
-  { title: "Hidden Waterfall Hunting", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Unique Experience", price: 85 },
-  { title: "Horton Plains and Worlds End Hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Unique Experience", price: 110 },
-  { title: "Foraging and Traditional cooking", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Unique Experience", price: 95 },
-  { title: "Stories of Fishtail palm – Toddy Tapper", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Unique Experience", price: 50 },
-  { title: "Cooking experiences", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Unique Experience", price: 65 },
-  { title: "Devil’s Staircase hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Unique Experience", price: 100 }
-];
-
-// Gallery එකට පෙන්වන්න අමතර පින්තූර ටිකක්
+// Gallery ekata pennanna amathara pinthoora tikak
 const galleryImages = [
   "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800",
   "https://images.unsplash.com/photo-1566807810034-cb150c765322?q=80&w=800",
@@ -52,11 +21,23 @@ export default async function TourDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+
+  // JSON eke thiyena list 3ma ekathu karala, category eka auto attach karanawa
+  const allTours = [
+    ...(toursData.multidayTours || []).map(t => ({ ...t, category: "Multi-day Tour" })),
+    ...(toursData.experiences || []).map(t => ({ ...t, category: "Day Experience" })),
+    ...(toursData.uniqueExperiences || []).map(t => ({ ...t, category: "Unique Experience" }))
+  ];
+
   const tour = allTours.find((t) => slugify(t.title) === slug);
 
   if (!tour) {
     notFound();
   }
+
+  // Price calculations
+  const numericPrice = Number(tour.price) || 150;
+  const totalPrice = numericPrice + 25;
 
   return (
     <main className="min-h-screen bg-white text-gray-900 pt-24 pb-16">
@@ -81,11 +62,11 @@ export default async function TourDetailPage({
 
         {/* AIRBNB STYLE IMAGE GALLERY */}
         <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden mb-12">
-          {/* ප්‍රධාන ලොකු පින්තූරය */}
+          {/* Main big image */}
           <div className="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer">
             <img src={tour.image} alt="Tour Main" className="w-full h-full object-cover group-hover:brightness-95 transition" />
           </div>
-          {/* අමතර කුඩා පින්තූර 4 */}
+          {/* Small images */}
           {galleryImages.map((img, idx) => (
             <div key={idx} className="hidden md:block col-span-1 row-span-1 relative group cursor-pointer">
               <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover group-hover:brightness-95 transition" />
@@ -93,7 +74,7 @@ export default async function TourDetailPage({
           ))}
         </div>
 
-        {/* CONTENT SPLIT (වම් පැත්තේ විස්තර, දකුණු පැත්තේ Booking Card එක) */}
+        {/* CONTENT SPLIT (Left side details, Right side Booking Card) */}
         <div className="flex flex-col lg:flex-row gap-12 relative">
           
           {/* LEFT SIDE: Tour Details */}
@@ -188,7 +169,7 @@ export default async function TourDetailPage({
               
               {/* Price Header */}
               <div className="flex items-baseline mb-6">
-                <span className="text-2xl font-bold">${tour.price || 150}</span>
+                <span className="text-2xl font-bold">${numericPrice}</span>
                 <span className="text-gray-500 ml-1">/ person</span>
               </div>
 
@@ -223,8 +204,8 @@ export default async function TourDetailPage({
               {/* Price Breakdown */}
               <div className="mt-6 space-y-3 text-gray-700">
                 <div className="flex justify-between">
-                  <span className="underline cursor-pointer">${tour.price || 150} x 1 guest</span>
-                  <span>${tour.price || 150}</span>
+                  <span className="underline cursor-pointer">${numericPrice} x 1 guest</span>
+                  <span>${numericPrice}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="underline cursor-pointer">Service fee</span>
@@ -235,7 +216,7 @@ export default async function TourDetailPage({
               {/* Total Price */}
               <div className="mt-6 pt-6 border-t border-gray-300 flex justify-between font-bold text-lg">
                 <span>Total</span>
-                <span>${(tour.price || 150) + 25}</span>
+                <span>${totalPrice}</span>
               </div>
 
               {/* Back to Home Link */}
