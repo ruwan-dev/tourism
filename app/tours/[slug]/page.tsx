@@ -1,205 +1,255 @@
-// src/app/page.tsx
-"use client";
-
-import { useState, useEffect } from "react";
+// src/app/tours/[slug]/page.tsx
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default function Home() {
-  // 1. Slider Data
-  const slides = [
-    {
-      title: "Explore",
-      subtitle: "Discover hidden wonders at every step",
-      bg: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600"
-    },
-    {
-      title: "Experience",
-      subtitle: "Immerse yourself in local culture and traditions",
-      bg: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600"
-    },
-    {
-      title: "Engage",
-      subtitle: "Connect with communities, create unforgettable memories",
-      bg: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600"
-    }
-  ];
+// URL Slug එක හදන Function එක
+const slugify = (text: string) =>
+  text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+// ඔයාගේ Tours වල සම්පූර්ණ Data ටික
+const allTours = [
+  // Multi-day Tours
+  { title: "Classic Sri Lanka", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Multi-day Tour", price: 450 },
+  { title: "Best of Thrills", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Multi-day Tour", price: 500 },
+  { title: "Tea and Heritage", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Multi-day Tour", price: 350 },
+  { title: "Tropical Treasures - Exploring Sri Lanka's Biodiversity", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Multi-day Tour", price: 600 },
+  { title: "Less Travelled", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Multi-day Tour", price: 400 },
+  { title: "Beach Bliss and Coastal Delights", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Multi-day Tour", price: 550 },
+  { title: "Tropical Tweets- Sri Lanka Birdwatching Adventure", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Multi-day Tour", price: 420 },
+  { title: "Craft Your Journey: Tailor-Made Adventures in Sri Lanka", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Multi-day Tour", price: 700 },
 
-  // Slide එක තත්පර 5න් 5ට ස්වයංක්‍රීයව වෙනස් වීමට
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [slides.length]);
+  // Day Experiences
+  { title: "Explore Ella in deep – Highlights and Hidden wonders of Ella", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 80 },
+  { title: "Art of Ceylon Tea – a technical tea tour", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Day Experience", price: 60 },
+  { title: "Ella cycling tour – Scenic 22km ride to less traveled Ella", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Day Experience", price: 90 },
+  { title: "Wildlife Safari – Explore wildlife all over Sri Lanka", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Day Experience", price: 120 },
+  { title: "Ella Rock Hike – Sunrise hike to the tallest peak in Ella", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 50 },
+  { title: "Hike in Pekoe Trail – Explore the wonders of Sri Lanka’s Longest hike", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Day Experience", price: 75 },
+  { title: "Lipton seat and Tea village hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Day Experience", price: 65 },
+  { title: "Paddy cultural tour", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Day Experience", price: 55 },
+  { title: "Hiking at Pekoe Trail", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Day Experience", price: 70 },
 
-  // 2. Multi-day Tours Data (8 Items)
-  const multidayTours = [
-    "Classic Sri Lanka", "Best of Thrills", "Tea and Heritage",
-    "Tropical Treasures - Exploring Sri Lanka's Biodiversity", "Less Travelled",
-    "Beach Bliss and Coastal Delights", "Tropical Tweets- Sri Lanka Birdwatching Adventure",
-    "Craft Your Journey: Tailor-Made Adventures in Sri Lanka"
-  ];
+  // Unique Experiences
+  { title: "Hidden Waterfall Hunting", image: "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1600", category: "Unique Experience", price: 85 },
+  { title: "Horton Plains and Worlds End Hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Unique Experience", price: 110 },
+  { title: "Foraging and Traditional cooking", image: "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1600", category: "Unique Experience", price: 95 },
+  { title: "Stories of Fishtail palm – Toddy Tapper", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600", category: "Unique Experience", price: 50 },
+  { title: "Cooking experiences", image: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600", category: "Unique Experience", price: 65 },
+  { title: "Devil’s Staircase hike", image: "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1600", category: "Unique Experience", price: 100 }
+];
 
-  // 3. Experiences Data (9 Items)
-  const experiences = [
-    "Explore Ella in deep – Highlights and Hidden wonders of Ella",
-    "Art of Ceylon Tea – a technical tea tour",
-    "Ella cycling tour – Scenic 22km ride to less traveled Ella",
-    "Wildlife Safari – Explore wildlife all over Sri Lanka",
-    "Ella Rock Hike – Sunrise hike to the tallest peak in Ella",
-    "Hike in Pekoe Trail – Explore the wonders of Sri Lanka’s Longest hike",
-    "Lipton seat and Tea village hike",
-    "Paddy cultural tour",
-    "Hiking at Pekoe Trail"
-  ];
+// Gallery එකට පෙන්වන්න අමතර පින්තූර ටිකක්
+const galleryImages = [
+  "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800",
+  "https://images.unsplash.com/photo-1566807810034-cb150c765322?q=80&w=800",
+  "https://images.unsplash.com/photo-1544015759-237f88e55f56?q=80&w=800",
+  "https://images.unsplash.com/photo-1517760444937-f6397edcfa8e?q=80&w=800"
+];
 
-  // 4. Other Unique Experiences (6 Items)
-  const uniqueExperiences = [
-    "Hidden Waterfall Hunting", "Horton Plains and Worlds End Hike",
-    "Foraging and Traditional cooking", "Stories of Fishtail palm – Toddy Tapper",
-    "Cooking experiences", "Devil’s Staircase hike"
-  ];
+export default async function TourDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const tour = allTours.find((t) => slugify(t.title) === slug);
 
-  // සරලව URL Slug එකක් සාදා ගැනීමට උදව් වන Function එකක්
-  const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-x0-9]+/g, "-").replace(/(^-|-$)+/g, "");
+  if (!tour) {
+    notFound();
+  }
 
   return (
-    <main className="min-h-screen bg-gray-50 text-gray-800">
-      
-      {/* HERO SLIDER SECTION */}
-      <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-center justify-center text-white">
-        {slides.map((slide, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100" : "opacity-0"}`}
-            style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('${slide.bg}')` }}
-          >
-            <div className="flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-wide animate-fade-in uppercase">
-                {slide.title}
-              </h1>
-              <p className="text-lg md:text-2xl font-light tracking-wide max-w-2xl">
-                {slide.subtitle}
-              </p>
+    <main className="min-h-screen bg-white text-gray-900 pt-24 pb-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* HEADER SECTION */}
+        <div className="mb-6">
+          <h1 className="text-3xl sm:text-4xl font-semibold mb-2">{tour.title}</h1>
+          <div className="flex items-center text-sm font-medium text-gray-700">
+            <span className="flex items-center">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-gray-900 fill-current"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.554 1.769l7.292 6.522-1.828 9.569a1 1 0 0 0 1.483 1.06L16 25.731l8.497 4.924a1 1 0 0 0 1.483-1.06l-1.828-9.569 7.292-6.522a1 1 0 0 0-.554-1.769l-9.86-1.27-4.124-8.885a1 1 0 0 0-1.812 0z"></path></svg>
+              4.98
+            </span>
+            <span className="mx-2 font-bold hover:underline cursor-pointer">· 124 reviews</span>
+            <span className="mx-2">·</span>
+            <span className="flex items-center">
+              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 fill-current"><path d="M16 1c4.418 0 8 3.582 8 8 0 5.485-6.667 14.333-7.464 15.352a.666.666 0 0 1-1.072 0C14.667 23.333 8 14.485 8 9c0-4.418 3.582-8 8-8zm0 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>
+              Sri Lanka
+            </span>
+          </div>
+        </div>
+
+        {/* AIRBNB STYLE IMAGE GALLERY */}
+        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden mb-12">
+          {/* ප්‍රධාන ලොකු පින්තූරය */}
+          <div className="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer">
+            <img src={tour.image} alt="Tour Main" className="w-full h-full object-cover group-hover:brightness-95 transition" />
+          </div>
+          {/* අමතර කුඩා පින්තූර 4 */}
+          {galleryImages.map((img, idx) => (
+            <div key={idx} className="hidden md:block col-span-1 row-span-1 relative group cursor-pointer">
+              <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover group-hover:brightness-95 transition" />
+            </div>
+          ))}
+        </div>
+
+        {/* CONTENT SPLIT (වම් පැත්තේ විස්තර, දකුණු පැත්තේ Booking Card එක) */}
+        <div className="flex flex-col lg:flex-row gap-12 relative">
+          
+          {/* LEFT SIDE: Tour Details */}
+          <div className="w-full lg:w-2/3">
+            
+            {/* Host Section */}
+            <div className="flex justify-between items-center pb-6 border-b border-gray-300">
+              <div>
+                <h2 className="text-2xl font-semibold mb-1">
+                  {tour.category} hosted by Travelling Thrills
+                </h2>
+                <p className="text-gray-500">Expert Guide · Local Authentic Experience · Transportation Included</p>
+              </div>
+              <div className="h-14 w-14 rounded-full overflow-hidden bg-gray-200 shadow-md">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200" alt="Host Avatar" className="h-full w-full object-cover" />
+              </div>
+            </div>
+
+            {/* Highlights Section */}
+            <div className="py-8 border-b border-gray-300 space-y-6">
+              <div className="flex items-start">
+                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div>
+                  <h3 className="text-lg font-semibold">Off the beaten path</h3>
+                  <p className="text-gray-500 text-sm">Explore hidden gems that are often overlooked by mainstream travel.</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <div>
+                  <h3 className="text-lg font-semibold">Free cancellation</h3>
+                  <p className="text-gray-500 text-sm">Cancel up to 48 hours before the tour for a full refund.</p>
+                </div>
+              </div>
+              <div className="flex items-start">
+                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" /></svg>
+                <div>
+                  <h3 className="text-lg font-semibold">Highly rated Host</h3>
+                  <p className="text-gray-500 text-sm">Travelling Thrills has received 5-star ratings from 95% of guests.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Description Section */}
+            <div className="py-8 border-b border-gray-300">
+              <h2 className="text-2xl font-semibold mb-4">About this experience</h2>
+              <div className="text-gray-700 leading-relaxed space-y-4">
+                <p>
+                  Immerse yourself in the beauty of <strong>{tour.title}</strong>. 
+                  This experience is carefully crafted to give you the best 
+                  {tour.category.toLowerCase()} experience in Sri Lanka. 
+                </p>
+                <p>
+                  We believe that travel should be a force for good. Our tours are designed to have a positive impact on the environment, the local community, and the economy. We work closely with local businesses to ensure an authentic experience.
+                </p>
+                <button className="font-semibold underline mt-2 flex items-center hover:text-gray-600 transition">
+                  Show more <span className="ml-1 text-xl leading-none">›</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Amenities / What's included */}
+            <div className="py-8">
+              <h2 className="text-2xl font-semibold mb-6">What's included</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">🚐</span> Professional Transportation
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">🗺️</span> Expert Local Guide
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">🎫</span> Entrance Tickets
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">💧</span> Bottled Water
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">📸</span> Photography Stops
+                </div>
+                <div className="flex items-center text-gray-700">
+                  <span className="text-2xl mr-3">🌿</span> Eco-friendly Practices
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE: Airbnb Sticky Booking Widget */}
+          <div className="w-full lg:w-1/3 relative">
+            <div className="sticky top-28 bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+              
+              {/* Price Header */}
+              <div className="flex items-baseline mb-6">
+                <span className="text-2xl font-bold">${tour.price || 150}</span>
+                <span className="text-gray-500 ml-1">/ person</span>
+              </div>
+
+              {/* Form Inputs (Date, Time, Guests) */}
+              <div className="border border-gray-400 rounded-xl overflow-hidden mb-4">
+                <div className="flex border-b border-gray-400">
+                  <div className="w-1/2 p-3 border-r border-gray-400 hover:bg-gray-50 cursor-pointer">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Date</div>
+                    <div className="text-sm text-gray-600 mt-1">Add date</div>
+                  </div>
+                  <div className="w-1/2 p-3 hover:bg-gray-50 cursor-pointer">
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Time</div>
+                    <div className="text-sm text-gray-600 mt-1">Add time</div>
+                  </div>
+                </div>
+                <div className="p-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center">
+                  <div>
+                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Guests</div>
+                    <div className="text-sm text-gray-600 mt-1">1 guest</div>
+                  </div>
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+
+              {/* Reserve Button (Airbnb Rose Color) */}
+              <button className="w-full bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold py-3.5 rounded-lg transition-colors text-lg">
+                Reserve
+              </button>
+
+              <p className="text-center text-gray-500 text-sm mt-4">You won't be charged yet</p>
+
+              {/* Price Breakdown */}
+              <div className="mt-6 space-y-3 text-gray-700">
+                <div className="flex justify-between">
+                  <span className="underline cursor-pointer">${tour.price || 150} x 1 guest</span>
+                  <span>${tour.price || 150}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="underline cursor-pointer">Service fee</span>
+                  <span>$25</span>
+                </div>
+              </div>
+
+              {/* Total Price */}
+              <div className="mt-6 pt-6 border-t border-gray-300 flex justify-between font-bold text-lg">
+                <span>Total</span>
+                <span>${(tour.price || 150) + 25}</span>
+              </div>
+
+              {/* Back to Home Link */}
+              <div className="mt-6 flex justify-center">
+                 <Link href="/" className="text-sm font-semibold underline text-gray-500 hover:text-gray-800 flex items-center">
+                   <span className="mr-1">⚑</span> Back to home
+                 </Link>
+              </div>
+
             </div>
           </div>
-        ))}
-        {/* Slider Dots */}
-        <div className="absolute bottom-5 flex space-x-2">
-          {slides.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentSlide(idx)}
-              className={`h-3 w-3 rounded-full transition-all ${idx === currentSlide ? "bg-amber-500 w-6" : "bg-white/50"}`}
-            />
-          ))}
-        </div>
-      </section>
 
-      {/* WHY US / USPs SECTION */}
-      <section className="py-12 bg-white border-b shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-4">
-            <div className="text-4xl mb-2">🧑‍✈️</div>
-            <h3 className="font-bold text-lg text-blue-900">Experienced Tour Leaders</h3>
-            <p className="text-sm text-gray-600 mt-1">Expertise at Your Service: Guided by the Best for Effortless Exploration</p>
-          </div>
-          <div className="p-4">
-            <div className="text-4xl mb-2">🌴</div>
-            <h3 className="font-bold text-lg text-blue-900">Authentic Experience</h3>
-            <p className="text-sm text-gray-600 mt-1">Unlock the Genuine: Dive into Authenticity for Unforgettable Memories</p>
-          </div>
-          <div className="p-4">
-            <div className="text-4xl mb-2">🗺️</div>
-            <h3 className="font-bold text-lg text-blue-900">Expertly Crafted Adventures</h3>
-            <p className="text-sm text-gray-600 mt-1">Crafted with Care: Expertly Tailored Adventures for Your Ultimate Journey</p>
-          </div>
         </div>
-      </section>
-
-      {/* MULTI-DAY TOURS SECTION */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-blue-900">Multi-day Tours</h2>
-          <div className="h-1 w-16 bg-amber-500 mx-auto mt-2"></div>
-        </div>
-        {/* Responsive Grid: 1 col on mobile, 2 on tablet, 4 on desktop */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {multidayTours.map((tour, idx) => (
-            <Link href={`/tours/${slugify(tour)}`} key={idx} className="group bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all border border-gray-100 flex flex-col justify-between p-6 hover:-translate-y-1 duration-300">
-              <h3 className="font-bold text-lg text-gray-800 group-hover:text-blue-600 transition">
-                {tour}
-              </h3>
-              <div className="mt-4 text-sm text-amber-600 font-semibold flex items-center">
-                View Tour Details &rarr;
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* EXPERIENCES SECTION */}
-      <section className="py-16 bg-blue-50/50">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-bold text-blue-900">Day Experiences</h2>
-            <div className="h-1 w-16 bg-amber-500 mx-auto mt-2"></div>
-          </div>
-          {/* Responsive Grid: 1 col on mobile, 2 on tablet, 3 on desktop */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {experiences.map((exp, idx) => (
-              <Link href={`/tours/${slugify(exp)}`} key={idx} className="group bg-white rounded-xl shadow-sm p-6 hover:shadow-md transition border border-gray-100 flex flex-col justify-between">
-                <h3 className="font-semibold text-gray-800 group-hover:text-blue-600 transition leading-snug">
-                  {exp}
-                </h3>
-                <span className="text-xs text-gray-400 mt-4 block">Adventure Tour</span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* OTHER UNIQUE EXPERIENCES */}
-      <section className="py-16 max-w-7xl mx-auto px-4">
-        <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold text-blue-900">Other Unique Experiences</h2>
-          <div className="h-1 w-16 bg-amber-500 mx-auto mt-2"></div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {uniqueExperiences.map((item, idx) => (
-            <Link href={`/tours/${slugify(item)}`} key={idx} className="bg-white p-5 rounded-lg border shadow-sm hover:border-amber-500 transition text-center font-medium text-gray-700 block">
-              {item}
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* ABOUT US SECTION */}
-      <section className="py-16 bg-white border-t">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-blue-900 mb-2">About Us</h2>
-          <p className="text-amber-600 font-medium mb-6">Welcome to Travelling Thrills</p>
-          
-          <div className="text-gray-600 space-y-4 text-justify md:text-center leading-relaxed">
-            <p>
-              Your go-to travel agency for best travel experience in Sri Lanka. We specially focusing on sustainable tourism and off the beaten path tours in Sri Lanka.
-            </p>
-            <p>
-              We believe that travel should be a force for good, and that’s why we specialize in sustainable tourism. Our tours are designed to have a positive impact on the environment, the local community, and the economy. We work closely with local communities and businesses to ensure that our tours benefit everyone involved.
-            </p>
-            <p>
-              At Travelling Thrills, we also specialize in off the beaten path tours. We believe that the best way to experience Sri Lanka is to step off the main tourist trail and explore the hidden gems that are often overlooked by mainstream travel. Our tours take you to the heart of Sri Lanka, where you can experience the authentic culture, traditions, and way of life of the local people.
-            </p>
-          </div>
-          
-          <button className="mt-8 bg-blue-950 hover:bg-blue-900 text-white font-semibold py-3 px-8 rounded-md transition shadow-md">
-            Contact Us to Plan Your Adventure
-          </button>
-        </div>
-      </section>
-
+      </div>
     </main>
   );
 }
