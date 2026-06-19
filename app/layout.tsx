@@ -1,16 +1,19 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
-import { Poppins ,Caveat} from "next/font/google";
+import { Poppins, Caveat } from "next/font/google";
 import "./globals.css";
 
-// Navbar එක මෙතනින් Import කරගන්න ඕනේ
+// Navbar සහ Preloader මෙතනින් Import කරගන්න
 import Navbar from "@/components/Navbar"; 
+import Preloader from "@/components/Preloader"; // අලුත් Preloader Component එක
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"], 
 });
-const caveat = Caveat({ subsets: ["latin"], weight: ["700"] }); // 2. Caveat setup කරන්න
+
+const caveat = Caveat({ subsets: ["latin"], weight: ["700"] }); // Caveat setup කරන්න
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://tourism-six-sepia.vercel.app"), // ඔයාගේ Vercel Link එක
   title: "Travelling Thrills | Best Tours & Experiences in Sri Lanka",
@@ -56,6 +59,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        {/* අලුතින් සාදන ලද Preloader එක */}
+        <Preloader />
+
         {/* මෙන්න අපේ Navbar එක ආයෙත් ඇතුළත් කළා */}
         <Navbar />
         

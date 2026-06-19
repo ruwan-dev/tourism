@@ -32,3 +32,47 @@ body {
 .animate-slow-zoom {
   animation: slowZoom 15s ease-in-out infinite alternate;
 }
+/* Logo Breathing Animation for Preloader */
+@keyframes breathing {
+  0%, 100% { 
+    transform: scale(0.9); 
+    opacity: 0.7; 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 1; 
+  }
+}
+
+.animate-breathing {
+  animation: breathing 1.5s infinite ease-in-out;
+}
+/* Logo Wipe Reveal Animation */
+@keyframes wipeReveal {
+  0% {
+    clip-path: inset(0 100% 0 0); /* දකුණු පසින් 100% ක් සඟවා ඇත */
+  }
+  100% {
+    clip-path: inset(0 0 0 0); /* සම්පූර්ණයෙන්ම දිස් වේ */
+  }
+}
+
+.animate-wipe-reveal {
+  animation: wipeReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Random Mosaic Reveal Animation */
+@keyframes hideBlock {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
+.animate-hide-block {
+  animation: hideBlock 0.5s ease-out forwards;
+}
