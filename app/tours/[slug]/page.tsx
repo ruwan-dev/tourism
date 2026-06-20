@@ -20,14 +20,17 @@ export default function TourDetailPage() {
   // Tab State for "Before you book"
   const [activeTab, setActiveTab] = useState("rightForYou");
 
+  // TypeScript Build Error Fix: Treat JSON data as 'any' to avoid missing property errors
+  const data = toursData as any;
+
   // Load from JSON
   const allTours = [
-    ...(toursData.multidayTours || []).map((t) => ({ ...t, category: "Multi-day Tour" })),
-    ...(toursData.experiences || []).map((t) => ({ ...t, category: "Day Experience" })),
-    ...(toursData.uniqueExperiences || []).map((t) => ({ ...t, category: "Unique Experience" }))
+    ...(data.multidayTours || []).map((t: any) => ({ ...t, category: "Multi-day Tour" })),
+    ...(data.experiences || []).map((t: any) => ({ ...t, category: "Day Experience" })),
+    ...(data.uniqueExperiences || []).map((t: any) => ({ ...t, category: "Unique Experience" }))
   ];
 
-  const tour = allTours.find((t) => slugify(t.title) === slug);
+  const tour = allTours.find((t: any) => slugify(t.title) === slug);
 
   if (!tour) {
     notFound();
@@ -102,7 +105,6 @@ export default function TourDetailPage() {
                         </div>
                       ))
                     ) : (
-                      // JSON eke data nathi nam pennana default text eka
                       <>
                         <div className="flex gap-3">
                             <CheckCircle className="text-emerald-500 shrink-0" size={24} />
