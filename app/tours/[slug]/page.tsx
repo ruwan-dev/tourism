@@ -20,14 +20,17 @@ export default function TourDetailPage() {
   // Tab State for "Before you book"
   const [activeTab, setActiveTab] = useState("rightForYou");
 
+  // TypeScript Build Error Fix
+  const data = toursData as any;
+
   // Load from JSON
   const allTours = [
-    ...(toursData.multidayTours || []).map((t) => ({ ...t, category: "Multi-day Tour" })),
-    ...(toursData.experiences || []).map((t) => ({ ...t, category: "Day Experience" })),
-    ...(toursData.uniqueExperiences || []).map((t) => ({ ...t, category: "Unique Experience" }))
+    ...(data.multidayTours || []).map((t: any) => ({ ...t, category: "Multi-day Tour" })),
+    ...(data.experiences || []).map((t: any) => ({ ...t, category: "Day Experience" })),
+    ...(data.uniqueExperiences || []).map((t: any) => ({ ...t, category: "Unique Experience" }))
   ];
 
-  const tour = allTours.find((t) => slugify(t.title) === slug);
+  const tour = allTours.find((t: any) => slugify(t.title) === slug);
 
   if (!tour) {
     notFound();
@@ -73,13 +76,47 @@ export default function TourDetailPage() {
           {/* LEFT SIDE: Content */}
           <div className="w-full lg:w-2/3">
             
-            {/* Main Image */}
-            <div className="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-10 shadow-sm">
-                <img 
-                    src={tour.image} 
-                    alt={tour.title} 
-                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
-                />
+            {/* IMAGE GALLERY SECTION (Updated Layout with 15 Image Support) */}
+            <div className="mb-10 flex flex-col gap-3">
+              
+              {/* Main Large Image */}
+              <div className="w-full h-[350px] md:h-[450px] rounded-2xl overflow-hidden shadow-sm relative group cursor-pointer">
+                  <img 
+                      src={tour.image} 
+                      alt={tour.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                  />
+              </div>
+
+              {/* Thumbnails Row (Max 4 visible) */}
+              {tour.gallery && tour.gallery.length > 0 && (
+                  <div className="grid grid-cols-4 gap-3 h-24 md:h-32">
+                      {tour.gallery.slice(0, 4).map((img: string, idx: number) => {
+                          const isLastVisible = idx === 3;
+                          const totalPhotos = (tour.gallery?.length || 0) + 1; // +1 for the main hero image
+                          const showOverlay = isLastVisible && tour.gallery.length >= 4;
+
+                          return (
+                              <div key={idx} className="relative rounded-xl md:rounded-2xl overflow-hidden cursor-pointer group h-full shadow-sm">
+                                  <img 
+                                      src={img} 
+                                      alt={`${tour.title} Gallery ${idx + 1}`} 
+                                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                                  />
+                                  
+                                  {/* "All photos" Overlay button on the 4th thumbnail */}
+                                  {showOverlay && (
+                                      <div className="absolute inset-0 bg-black/30 hover:bg-black/40 flex items-center justify-center transition-colors">
+                                          <button className="bg-white text-gray-900 font-bold py-1.5 px-3 md:py-2 md:px-4 rounded-lg text-[10px] md:text-sm shadow-md transition-transform hover:scale-105">
+                                              All photos ({totalPhotos})
+                                          </button>
+                                      </div>
+                                  )}
+                              </div>
+                          );
+                      })}
+                  </div>
+              )}
             </div>
 
             {/* Overview Section */}
@@ -102,7 +139,6 @@ export default function TourDetailPage() {
                         </div>
                       ))
                     ) : (
-                      // JSON eke data nathi nam pennana default text eka
                       <>
                         <div className="flex gap-3">
                             <CheckCircle className="text-emerald-500 shrink-0" size={24} />
