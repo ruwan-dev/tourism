@@ -5,7 +5,7 @@
       "price": 150,
       "duration": "7 Days",
       "image": "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000",
-      "description": "Sri Lanka is a beautiful country. You will visit beaches, mountains and tea plantations...",
+      "description": "Sri Lanka is a beautiful country. You will visit beaches, mountains and tea plantations. This journey takes you through breathtaking landscapes and authentic cultural encounters.",
       "whyLove": [
         "Travel with an expert local guide who knows the hidden gems.",
         "Enjoy authentic local cuisine and cultural encounters.",
@@ -44,8 +44,132 @@
         ]
       },
       "itinerary": [
-        { "title": "Day 1: Arrive in Colombo", "desc": "Welcome to Sri Lanka! Relax at the hotel..." },
-        { "title": "Day 2: Sigiriya Rock", "desc": "Today we climb the ancient rock..." }
+        { 
+          "title": "Day 1: Arrive in Colombo", 
+          "desc": "Welcome to Sri Lanka! Relax at the hotel or take an optional evening city tour to experience the vibrant street life of Colombo." 
+        },
+        { 
+          "title": "Day 2: Sigiriya Rock Fortress", 
+          "desc": "Today we travel to the cultural triangle to climb the ancient Sigiriya Rock Fortress, an astonishing feat of engineering and art." 
+        },
+        { 
+          "title": "Day 3: Kandy & Temple of the Tooth", 
+          "desc": "Journey to the hill capital, Kandy. Visit the sacred Temple of the Tooth Relic and enjoy a relaxing walk around the Kandy lake." 
+        },
+        { 
+          "title": "Day 4: Scenic Train to Ella", 
+          "desc": "Experience one of the most beautiful train rides in the world, passing through lush green tea plantations and misty mountains to reach Ella." 
+        },
+        { 
+          "title": "Day 5: Yala National Park", 
+          "desc": "Head down to the southern coast. In the afternoon, you have the option to take a thrilling jeep safari in Yala National Park." 
+        },
+        { 
+          "title": "Day 6: Mirissa Beach", 
+          "desc": "Relax on the golden sands of Mirissa. Opt for an early morning whale watching tour or simply enjoy the tropical sunset." 
+        },
+        { 
+          "title": "Day 7: Return to Colombo", 
+          "desc": "After a final morning by the beach, we head back to Colombo where our classic Sri Lankan adventure comes to an end." 
+        }
+      ]
+    }
+  ],
+  "experiences": [
+    {
+      "title": "Kandy City Cultural Day Tour",
+      "price": 55,
+      "duration": "1 Day",
+      "image": "https://images.unsplash.com/photo-1586220556108-72719ea2b6e1?q=80&w=1000&auto=format&fit=crop",
+      "description": "Immerse yourself in the rich culture and history of Kandy with this comprehensive full-day guided tour.",
+      "whyLove": [
+        "Expert local guides throughout the journey",
+        "Authentic local dining experiences"
+      ],
+      "inclusions": {
+        "destinations": "Kandy City",
+        "meals": "Traditional Sri Lankan Lunch",
+        "transport": "Tuk Tuk / Mini Van",
+        "accommodation": "Not Included (Day Tour)",
+        "includedActivities": [
+          "Guided city walk",
+          "Botanical Gardens entrance"
+        ],
+        "optionalActivities": [
+          "Gem museum tour"
+        ]
+      },
+      "beforeYouBook": {
+        "rightForYou": [
+          "Easy walking pace.",
+          "Great for photography enthusiasts."
+        ],
+        "visas": [
+          "Valid Sri Lankan tourist visa required."
+        ],
+        "accommodation": [
+          "Not applicable for day experiences."
+        ],
+        "joiningPoint": [
+          "Your hotel lobby in Kandy City"
+        ]
+      },
+      "itinerary": [
+        {
+          "title": "09:00 AM: Pick up",
+          "desc": "Meet your guide at the hotel and start the tour."
+        },
+        {
+          "title": "12:30 PM: Lunch",
+          "desc": "Enjoy a spicy and delicious traditional Sri Lankan rice and curry."
+        }
+      ]
+    }
+  ],
+  "uniqueExperiences": [
+    {
+      "title": "Hot Air Ballooning in Dambulla",
+      "price": 220,
+      "duration": "4 Hours",
+      "image": "https://images.unsplash.com/photo-1549488344-c6a6f6424e86?q=80&w=1000&auto=format&fit=crop",
+      "description": "Float peacefully over the cultural triangle at sunrise and witness the waking wildlife and ancient ruins from above.",
+      "whyLove": [
+        "Breathtaking aerial views at sunrise",
+        "Champagne breakfast upon landing"
+      ],
+      "inclusions": {
+        "destinations": "Dambulla",
+        "meals": "Champagne Breakfast",
+        "transport": "Hotel pickup and drop-off",
+        "accommodation": "None",
+        "includedActivities": [
+          "1-hour hot air balloon flight"
+        ],
+        "optionalActivities": []
+      },
+      "beforeYouBook": {
+        "rightForYou": [
+          "Requires standing for approximately one hour."
+        ],
+        "visas": [
+          "Standard tourist visa."
+        ],
+        "accommodation": [
+          "Not applicable."
+        ],
+        "joiningPoint": [
+          "Any hotel in the Dambulla/Habarana area"
+        ]
+      },
+      "itinerary": [
+        {
+          "title": "05:00 AM: Hotel Pickup",
+          "desc": "Early morning pickup to catch the perfect sunrise."
+        },
+        {
+          "title": "06:00 AM: Take Off",
+          "desc": "Gently lift off into the morning sky for a 1-hour magical flight."
+        }
       ]
     }
   ]
