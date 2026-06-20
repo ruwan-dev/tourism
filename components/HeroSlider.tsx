@@ -13,19 +13,19 @@ const customTravelFont = localFont({
 export default function HeroSlider() {
   const slides = [
     {
-      title: "Travel & Adventure",
+      title: "Explore",
       subtitle: "Discover hidden wonders at every step",
       bg: "/slide2.png"
     },
     {
       title: "Experience",
       subtitle: "Immerse yourself in local culture and traditions",
-      bg: "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1600"
+      bg: "/slide1.png"
     },
     {
       title: "Engage",
       subtitle: "Connect with communities, create unforgettable memories",
-      bg: "/slide1.png"
+      bg: "/slide3.png"
     }
   ];
 

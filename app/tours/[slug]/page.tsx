@@ -1,229 +1,279 @@
-// src/app/tours/[slug]/page.tsx
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import toursData from "@/data/tours.json"; // JSON eka import karanawa
+"use client";
 
-// URL Slug eka hadana Function eka
+import React, { useState } from "react";
+import Link from "next/link";
+import { useParams, notFound } from "next/navigation";
+import { 
+  ArrowLeft, Star, Clock, Map, Hash, Share, Heart, CheckCircle, 
+  MapPin, Utensils, Bus, Bed, CheckCircle2, Plus, Flag, FileText 
+} from "lucide-react";
+import toursData from "@/data/tours.json";
+
+// URL Slug function
 const slugify = (text: string) =>
   text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
 
-// Gallery ekata pennanna amathara pinthoora tikak
-const galleryImages = [
-  "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=800",
-  "https://images.unsplash.com/photo-1566807810034-cb150c765322?q=80&w=800",
-  "https://images.unsplash.com/photo-1544015759-237f88e55f56?q=80&w=800",
-  "https://images.unsplash.com/photo-1517760444937-f6397edcfa8e?q=80&w=800"
-];
+export default function TourDetailPage() {
+  const params = useParams();
+  const slug = params?.slug as string;
+  
+  // Tab State for "Before you book"
+  const [activeTab, setActiveTab] = useState("rightForYou");
 
-export default async function TourDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-
-  // JSON eke thiyena list 3ma ekathu karala, category eka auto attach karanawa
+  // Load from JSON
   const allTours = [
-    ...(toursData.multidayTours || []).map(t => ({ ...t, category: "Multi-day Tour" })),
-    ...(toursData.experiences || []).map(t => ({ ...t, category: "Day Experience" })),
-    ...(toursData.uniqueExperiences || []).map(t => ({ ...t, category: "Unique Experience" }))
+    ...(toursData.multidayTours || []).map((t) => ({ ...t, category: "Multi-day Tour" })),
+    ...(toursData.experiences || []).map((t) => ({ ...t, category: "Day Experience" })),
+    ...(toursData.uniqueExperiences || []).map((t) => ({ ...t, category: "Unique Experience" }))
   ];
 
   const tour = allTours.find((t) => slugify(t.title) === slug);
 
   if (!tour) {
     notFound();
+    return null;
   }
 
-  // Price calculations
   const numericPrice = Number(tour.price) || 150;
-  const totalPrice = numericPrice + 25;
 
   return (
     <main className="min-h-screen bg-white text-gray-900 pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* HEADER SECTION */}
-        <div className="mb-6">
-          <h1 className="text-3xl sm:text-4xl font-semibold mb-2">{tour.title}</h1>
-          <div className="flex items-center text-sm font-medium text-gray-700">
-            <span className="flex items-center">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 text-gray-900 fill-current"><path d="M15.094 1.579l-4.124 8.885-9.86 1.27a1 1 0 0 0-.554 1.769l7.292 6.522-1.828 9.569a1 1 0 0 0 1.483 1.06L16 25.731l8.497 4.924a1 1 0 0 0 1.483-1.06l-1.828-9.569 7.292-6.522a1 1 0 0 0-.554-1.769l-9.86-1.27-4.124-8.885a1 1 0 0 0-1.812 0z"></path></svg>
-              4.98
-            </span>
-            <span className="mx-2 font-bold hover:underline cursor-pointer">· 124 reviews</span>
-            <span className="mx-2">·</span>
-            <span className="flex items-center">
-              <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1 fill-current"><path d="M16 1c4.418 0 8 3.582 8 8 0 5.485-6.667 14.333-7.464 15.352a.666.666 0 0 1-1.072 0C14.667 23.333 8 14.485 8 9c0-4.418 3.582-8 8-8zm0 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"></path></svg>
-              Sri Lanka
-            </span>
-          </div>
-        </div>
-
-        {/* AIRBNB STYLE IMAGE GALLERY */}
-        <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-2 h-[40vh] md:h-[60vh] rounded-2xl overflow-hidden mb-12">
-          {/* Main big image */}
-          <div className="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer">
-            <img src={tour.image} alt="Tour Main" className="w-full h-full object-cover group-hover:brightness-95 transition" />
-          </div>
-          {/* Small images */}
-          {galleryImages.map((img, idx) => (
-            <div key={idx} className="hidden md:block col-span-1 row-span-1 relative group cursor-pointer">
-              <img src={img} alt={`Gallery ${idx}`} className="w-full h-full object-cover group-hover:brightness-95 transition" />
+        {/* BREADCRUMB & ICONS */}
+        <div className="flex justify-between items-center mb-4">
+            <Link href="/" className="text-gray-500 hover:text-gray-800 flex items-center text-sm font-medium">
+                <ArrowLeft size={16} className="mr-1" /> Back to Tours
+            </Link>
+            <div className="flex gap-4">
+                <button className="text-gray-500 hover:text-rose-500 transition"><Heart size={20} /></button>
+                <button className="text-gray-500 hover:text-blue-500 transition"><Share size={20} /></button>
             </div>
-          ))}
         </div>
 
-        {/* CONTENT SPLIT (Left side details, Right side Booking Card) */}
-        <div className="flex flex-col lg:flex-row gap-12 relative">
+        {/* TITLE SECTION */}
+        <div className="mb-6">
+          <h1 className="text-3xl md:text-5xl font-extrabold text-[#1a2b49] mb-3">{tour.title}</h1>
+          <div className="flex items-center text-sm font-medium text-gray-700">
+            <div className="flex text-amber-500">
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" />
+                <Star size={16} fill="currentColor" className="text-gray-300" />
+            </div>
+            <span className="mx-2 font-bold text-gray-900">4.67</span>
+            <span className="text-gray-500 underline cursor-pointer hover:text-gray-900">(48 reviews)</span>
+          </div>
+        </div>
+
+        {/* MAIN LAYOUT GRID */}
+        <div className="flex flex-col lg:flex-row gap-10 relative">
           
-          {/* LEFT SIDE: Tour Details */}
+          {/* LEFT SIDE: Content */}
           <div className="w-full lg:w-2/3">
             
-            {/* Host Section */}
-            <div className="flex justify-between items-center pb-6 border-b border-gray-300">
-              <div>
-                <h2 className="text-2xl font-semibold mb-1">
-                  {tour.category} hosted by Travelling Thrills
-                </h2>
-                <p className="text-gray-500">Expert Guide · Local Authentic Experience · Transportation Included</p>
-              </div>
-              <div className="h-14 w-14 rounded-full overflow-hidden bg-gray-200 shadow-md">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200" alt="Host Avatar" className="h-full w-full object-cover" />
+            {/* Main Image */}
+            <div className="w-full h-[400px] md:h-[500px] rounded-2xl overflow-hidden mb-10 shadow-sm">
+                <img 
+                    src={tour.image} 
+                    alt={tour.title} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" 
+                />
+            </div>
+
+            {/* Overview Section */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold mb-4 text-[#1a2b49]">Overview</h2>
+              <p className="text-gray-700 leading-relaxed text-lg">
+                {tour.description ? tour.description : `Experience the best of Sri Lanka with our ${tour.title}. This journey takes you through breathtaking landscapes, authentic cultural encounters, and unforgettable adventures perfectly tailored for you.`}
+              </p>
+            </div>
+
+            {/* Why you'll love this trip */}
+            <div className="mb-12 bg-gray-50 p-6 md:p-8 rounded-2xl border border-gray-100">
+                <h3 className="font-bold text-xl text-[#1a2b49] mb-4">Why you'll love this trip</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {tour.whyLove && tour.whyLove.length > 0 ? (
+                      tour.whyLove.map((reason: string, idx: number) => (
+                        <div key={idx} className="flex gap-3">
+                            <CheckCircle className="text-emerald-500 shrink-0" size={24} />
+                            <span className="text-gray-700">{reason}</span>
+                        </div>
+                      ))
+                    ) : (
+                      // JSON eke data nathi nam pennana default text eka
+                      <>
+                        <div className="flex gap-3">
+                            <CheckCircle className="text-emerald-500 shrink-0" size={24} />
+                            <span className="text-gray-700">Expert local guides throughout the journey</span>
+                        </div>
+                        <div className="flex gap-3">
+                            <CheckCircle className="text-emerald-500 shrink-0" size={24} />
+                            <span className="text-gray-700">Authentic local dining experiences</span>
+                        </div>
+                      </>
+                    )}
+                </div>
+            </div>
+
+            {/* INCLUSIONS AND ACTIVITIES */}
+            <div className="mb-12 bg-[#f9f8f4] p-6 md:p-8 rounded-2xl">
+              <h2 className="text-2xl font-bold mb-6 text-[#1a2b49]">Inclusions and activities</h2>
+              <div className="flex flex-col md:flex-row gap-8">
+                
+                {/* Left Column (Transport, Meals etc) */}
+                <div className="w-full md:w-1/2 space-y-6">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1"><MapPin size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Destinations</span></div>
+                    <p className="ml-7 text-blue-600 underline cursor-pointer">{(tour.inclusions as any)?.destinations || "Sri Lanka"}</p>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1"><Utensils size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Meals</span></div>
+                    <p className="ml-7 text-gray-700">{(tour.inclusions as any)?.meals || "Breakfast included"}</p>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1"><Bus size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Transport</span></div>
+                    <p className="ml-7 text-gray-700">{(tour.inclusions as any)?.transport || "Private Vehicle"}</p>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-1"><Bed size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Accommodation</span></div>
+                    <p className="ml-7 text-gray-700">{(tour.inclusions as any)?.accommodation || "Hotel"}</p>
+                  </div>
+                </div>
+
+                {/* Right Column (Activities) */}
+                <div className="w-full md:w-1/2 space-y-8 md:border-l border-gray-300 md:pl-8 pt-4 md:pt-0 border-t md:border-t-0">
+                  <div>
+                    <div className="flex items-center gap-2 mb-3"><CheckCircle2 size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Included activities</span></div>
+                    <ul className="list-disc ml-9 text-gray-700 space-y-1">
+                      {(tour.inclusions as any)?.includedActivities?.map((act: string, i: number) => <li key={i}>{act}</li>) || <li>Standard activities</li>}
+                    </ul>
+                    <button className="ml-7 mt-2 text-blue-600 text-sm hover:underline">Show all ⌄</button>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2 mb-3"><Plus size={18} className="text-gray-800"/> <span className="font-bold text-gray-900">Optional activities</span></div>
+                    <ul className="list-disc ml-9 text-gray-700 space-y-1">
+                      {(tour.inclusions as any)?.optionalActivities?.map((act: string, i: number) => <li key={i}>{act}</li>) || <li>No optional activities</li>}
+                    </ul>
+                  </div>
+                </div>
+
               </div>
             </div>
 
-            {/* Highlights Section */}
-            <div className="py-8 border-b border-gray-300 space-y-6">
-              <div className="flex items-start">
-                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <div>
-                  <h3 className="text-lg font-semibold">Off the beaten path</h3>
-                  <p className="text-gray-500 text-sm">Explore hidden gems that are often overlooked by mainstream travel.</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <div>
-                  <h3 className="text-lg font-semibold">Free cancellation</h3>
-                  <p className="text-gray-500 text-sm">Cancel up to 48 hours before the tour for a full refund.</p>
-                </div>
-              </div>
-              <div className="flex items-start">
-                <svg className="w-8 h-8 mr-4 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" /></svg>
-                <div>
-                  <h3 className="text-lg font-semibold">Highly rated Host</h3>
-                  <p className="text-gray-500 text-sm">Travelling Thrills has received 5-star ratings from 95% of guests.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Description Section */}
-            <div className="py-8 border-b border-gray-300">
-              <h2 className="text-2xl font-semibold mb-4">About this experience</h2>
-              <div className="text-gray-700 leading-relaxed space-y-4">
-                <p>
-                  Immerse yourself in the beauty of <strong>{tour.title}</strong>. 
-                  This experience is carefully crafted to give you the best 
-                  {tour.category.toLowerCase()} experience in Sri Lanka. 
-                </p>
-                <p>
-                  We believe that travel should be a force for good. Our tours are designed to have a positive impact on the environment, the local community, and the economy. We work closely with local businesses to ensure an authentic experience.
-                </p>
-                <button className="font-semibold underline mt-2 flex items-center hover:text-gray-600 transition">
-                  Show more <span className="ml-1 text-xl leading-none">›</span>
+            {/* BEFORE YOU BOOK YOU SHOULD KNOW (Tabs) */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold mb-6 text-[#1a2b49]">Before you book you should know</h2>
+              
+              <div className="flex gap-6 border-b border-gray-200 mb-6 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                <button 
+                  onClick={() => setActiveTab('rightForYou')} 
+                  className={`pb-3 font-bold flex items-center gap-2 whitespace-nowrap transition-colors ${activeTab === 'rightForYou' ? 'border-b-2 border-red-600 text-gray-900' : 'text-gray-500 hover:text-gray-800'}`}
+                >
+                  <Flag size={18}/> Is this trip right for you?
+                </button>
+                <button 
+                  onClick={() => setActiveTab('visas')} 
+                  className={`pb-3 font-bold flex items-center gap-2 whitespace-nowrap transition-colors ${activeTab === 'visas' ? 'border-b-2 border-red-600 text-gray-900' : 'text-gray-500 hover:text-gray-800'}`}
+                >
+                  <FileText size={18}/> Visas
+                </button>
+                <button 
+                  onClick={() => setActiveTab('accommodation')} 
+                  className={`pb-3 font-bold flex items-center gap-2 whitespace-nowrap transition-colors ${activeTab === 'accommodation' ? 'border-b-2 border-red-600 text-gray-900' : 'text-gray-500 hover:text-gray-800'}`}
+                >
+                  <Bed size={18}/> Accommodation
+                </button>
+                <button 
+                  onClick={() => setActiveTab('joiningPoint')} 
+                  className={`pb-3 font-bold flex items-center gap-2 whitespace-nowrap transition-colors ${activeTab === 'joiningPoint' ? 'border-b-2 border-red-600 text-gray-900' : 'text-gray-500 hover:text-gray-800'}`}
+                >
+                  <MapPin size={18}/> Joining point
                 </button>
               </div>
+
+              {/* Tab Content Box */}
+              <div className="border border-gray-200 rounded-xl p-6 h-64 overflow-y-auto bg-white custom-scrollbar shadow-inner">
+                <ul className="list-disc ml-5 space-y-4 text-gray-700 leading-relaxed">
+                  {(tour.beforeYouBook as any)?.[activeTab]?.map((item: string, idx: number) => (
+                    <li key={idx}>{item}</li>
+                  )) || <li>Information not available currently. Please check the JSON file.</li>}
+                </ul>
+              </div>
             </div>
 
-            {/* Amenities / What's included */}
-            <div className="py-8">
-              <h2 className="text-2xl font-semibold mb-6">What's included</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">🚐</span> Professional Transportation
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">🗺️</span> Expert Local Guide
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">🎫</span> Entrance Tickets
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">💧</span> Bottled Water
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">📸</span> Photography Stops
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <span className="text-2xl mr-3">🌿</span> Eco-friendly Practices
-                </div>
+            {/* Itinerary Section */}
+            <div className="mb-12">
+              <h2 className="text-2xl font-bold mb-6 text-[#1a2b49]">Itinerary</h2>
+              <div className="space-y-4">
+                {tour.itinerary && tour.itinerary.length > 0 ? (
+                  tour.itinerary.map((item: any, idx: number) => (
+                    <div key={idx} className="border border-gray-200 rounded-xl p-5 hover:border-gray-400 transition cursor-pointer">
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 bg-[#1a2b49] text-white rounded-full flex items-center justify-center font-bold shrink-0">
+                          {idx + 1}
+                        </div>
+                        <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                      </div>
+                      <p className="text-gray-600 mt-3 ml-14">{item.desc}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-500 italic border border-gray-200 rounded-xl p-6">Detailed itinerary will be provided upon booking inquiry.</p>
+                )}
               </div>
             </div>
 
           </div>
 
-          {/* RIGHT SIDE: Airbnb Sticky Booking Widget */}
+          {/* RIGHT SIDE: Booking Card */}
           <div className="w-full lg:w-1/3 relative">
-            <div className="sticky top-28 bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
+            <div className="sticky top-28 bg-white border border-gray-200 rounded-2xl p-6 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
               
               {/* Price Header */}
-              <div className="flex items-baseline mb-6">
-                <span className="text-2xl font-bold">${numericPrice}</span>
-                <span className="text-gray-500 ml-1">/ person</span>
-              </div>
-
-              {/* Form Inputs (Date, Time, Guests) */}
-              <div className="border border-gray-400 rounded-xl overflow-hidden mb-4">
-                <div className="flex border-b border-gray-400">
-                  <div className="w-1/2 p-3 border-r border-gray-400 hover:bg-gray-50 cursor-pointer">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Date</div>
-                    <div className="text-sm text-gray-600 mt-1">Add date</div>
-                  </div>
-                  <div className="w-1/2 p-3 hover:bg-gray-50 cursor-pointer">
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Time</div>
-                    <div className="text-sm text-gray-600 mt-1">Add time</div>
-                  </div>
-                </div>
-                <div className="p-3 hover:bg-gray-50 cursor-pointer flex justify-between items-center">
-                  <div>
-                    <div className="text-[10px] font-bold uppercase tracking-wider text-gray-800">Guests</div>
-                    <div className="text-sm text-gray-600 mt-1">1 guest</div>
-                  </div>
-                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+              <div className="mb-6">
+                <span className="text-gray-500 font-medium block mb-1">From</span>
+                <div className="flex items-end gap-1">
+                    <span className="text-4xl font-extrabold text-[#1a2b49]">${numericPrice}</span>
+                    <span className="text-lg font-bold text-[#1a2b49] mb-1">USD</span>
                 </div>
               </div>
 
-              {/* Reserve Button (Airbnb Rose Color) */}
-              <button className="w-full bg-[#FF385C] hover:bg-[#E31C5F] text-white font-semibold py-3.5 rounded-lg transition-colors text-lg">
-                Reserve
+              {/* Quick Facts List */}
+              <div className="space-y-5 border-y border-gray-200 py-6 mb-6">
+                <div className="flex items-center gap-4">
+                    <Clock className="text-gray-400 shrink-0" size={24} />
+                    <div>
+                        <span className="block text-sm text-gray-500 font-medium">Duration</span>
+                        <span className="block font-bold text-gray-900">{tour.duration || "8 Days"}</span>
+                    </div>
+                </div>
+                
+                <div className="flex items-center gap-4">
+                    <Map className="text-gray-400 shrink-0" size={24} />
+                    <div>
+                        <span className="block text-sm text-gray-500 font-medium">Route</span>
+                        <span className="block font-bold text-gray-900">Colombo to Colombo</span>
+                    </div>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <Hash className="text-gray-400 shrink-0" size={24} />
+                    <div>
+                        <span className="block text-sm text-gray-500 font-medium">Trip code</span>
+                        <span className="block font-bold text-gray-900">LK-TT-{numericPrice}</span>
+                    </div>
+                </div>
+              </div>
+
+              {/* Red Action Button */}
+              <button className="w-full bg-[#cc0000] hover:bg-[#a30000] text-white font-bold py-4 rounded-xl transition-colors text-lg">
+                View dates & book
               </button>
 
-              <p className="text-center text-gray-500 text-sm mt-4">You won't be charged yet</p>
-
-              {/* Price Breakdown */}
-              <div className="mt-6 space-y-3 text-gray-700">
-                <div className="flex justify-between">
-                  <span className="underline cursor-pointer">${numericPrice} x 1 guest</span>
-                  <span>${numericPrice}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="underline cursor-pointer">Service fee</span>
-                  <span>$25</span>
-                </div>
-              </div>
-
-              {/* Total Price */}
-              <div className="mt-6 pt-6 border-t border-gray-300 flex justify-between font-bold text-lg">
-                <span>Total</span>
-                <span>${totalPrice}</span>
-              </div>
-
-              {/* Back to Home Link */}
-              <div className="mt-6 flex justify-center">
-                 <Link href="/" className="text-sm font-semibold underline text-gray-500 hover:text-gray-800 flex items-center">
-                   <span className="mr-1">⚑</span> Back to home
-                 </Link>
+              <div className="mt-4 text-center">
+                <p className="text-gray-500 text-sm">Need help booking? <Link href="#" className="text-blue-600 font-medium hover:underline">Contact us</Link></p>
               </div>
 
             </div>

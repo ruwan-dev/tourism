@@ -4,50 +4,48 @@
       "title": "Classic Sri Lanka",
       "price": 150,
       "duration": "7 Days",
-      "host": "Saman",
       "image": "https://images.unsplash.com/photo-1546708973-b339540b5162?q=80&w=1000",
-      "description": "Discover hidden wonders at every step in this classic tour around Sri Lanka.",
+      "description": "Sri Lanka is a beautiful country. You will visit beaches, mountains and tea plantations...",
+      "whyLove": [
+        "Travel with an expert local guide who knows the hidden gems.",
+        "Enjoy authentic local cuisine and cultural encounters.",
+        "Flexible booking with free cancellation options."
+      ],
+      "inclusions": {
+        "destinations": "Sri Lanka",
+        "meals": "6 breakfasts, 1 lunch, 1 dinner",
+        "transport": "Private Bus, Public Bus, Train",
+        "accommodation": "Hotel (6 nights)",
+        "includedActivities": [
+          "Colombo - City Tour",
+          "Kandy - Temple of the Tooth",
+          "Sigiriya - Rock Fortress Climb",
+          "Ella - Train Ride"
+        ],
+        "optionalActivities": [
+          "Yala - Safari - $40",
+          "Mirissa - Whale Watching - $35"
+        ]
+      },
+      "beforeYouBook": {
+        "rightForYou": [
+          "You'll need to carry your bags on and off local trams and trains. The distances aren't far, but be aware of cobblestone streets.",
+          "This trip uses a combination of public and private transport. All vehicles are modern and have air-conditioning.",
+          "This is a relatively fast-paced trip that will allow you to see the highlights in a short period."
+        ],
+        "visas": [
+          "Most nationalities require a visa to enter Sri Lanka. Please check with your local embassy."
+        ],
+        "accommodation": [
+          "Hotels are carefully selected to provide a comfortable stay. Wi-Fi is available in most locations."
+        ],
+        "joiningPoint": [
+          "The trip starts at our base hotel in Colombo at 6:00 PM on Day 1."
+        ]
+      },
       "itinerary": [
-        { "title": "Day 1 - Arrival", "desc": "Welcome to Sri Lanka and transfer to hotel." },
-        { "title": "Day 2 - Sigiriya", "desc": "Climb the ancient Sigiriya Rock Fortress." }
-      ]
-    },
-    {
-      "title": "Best of Thrills",
-      "price": 180,
-      "duration": "5 Days",
-      "host": "Hashan",
-      "image": "https://images.unsplash.com/photo-1588598126228-56dfd84749f1?q=80&w=1000",
-      "description": "An adventurous journey for thrill seekers including hiking, rafting, and camping.",
-      "itinerary": [
-        { "title": "Day 1 - Knuckles", "desc": "Start the hike in the Knuckles mountain range." }
-      ]
-    }
-  ],
-  "experiences": [
-    {
-      "title": "Explore Ella in deep – Highlights and Hidden wonders of Ella",
-      "price": 75,
-      "duration": "8 Hours",
-      "host": "Kasun",
-      "image": "https://images.unsplash.com/photo-1542856391-010fb87dcfed?q=80&w=1000",
-      "description": "Explore Ella's Tea Heritage, Hidden Nature, Culture and Local Life.",
-      "itinerary": [
-        { "title": "Sunrise Hike", "desc": "Witness a breathtaking sunrise at Little Adam's peak" },
-        { "title": "Nature Walk", "desc": "Be familiar with flora and fauna. A story time" }
-      ]
-    }
-  ],
-  "uniqueExperiences": [
-    {
-      "title": "Hidden Waterfall Hunting",
-      "price": 50,
-      "duration": "4 Hours",
-      "host": "Nimal",
-      "image": "https://images.unsplash.com/photo-1563990112129-a9a72c24f5d7?q=80&w=1000",
-      "description": "Find the most secret and beautiful waterfalls hidden in the upcountry.",
-      "itinerary": [
-        { "title": "Morning Trek", "desc": "Trek through the dense forest to find the first waterfall." }
+        { "title": "Day 1: Arrive in Colombo", "desc": "Welcome to Sri Lanka! Relax at the hotel..." },
+        { "title": "Day 2: Sigiriya Rock", "desc": "Today we climb the ancient rock..." }
       ]
     }
   ]
