@@ -2,11 +2,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import localFont from "next/font/local"; // Local font import කළා
+import localFont from "next/font/local";
 
-// public/fonts/travel-font.ttf හි ඇති exact ෆොන්ට් එක ලෝඩ් කිරීම
 const customTravelFont = localFont({
-  src: "../public/fonts/travelf1.otf", // ෆොන්ට් ෆයිල් එක තියෙන තැන
+  src: "../public/fonts/travelf1.otf",
   display: "swap",
 });
 
@@ -39,7 +38,7 @@ export default function HeroSlider() {
   }, [slides.length]);
 
   return (
-    <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden flex items-center justify-center text-white">
+    <section className="relative h-screen w-full overflow-hidden flex items-center justify-center text-white">
       {slides.map((slide, index) => (
         <div
           key={index}
@@ -55,8 +54,8 @@ export default function HeroSlider() {
           <div className="absolute inset-0 bg-black/40" />
 
           {/* Text Content */}
-          <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto">
-            {/* මෙතැනදී අපේ අලුත් exact local font එක ලබා දී ඇත */}
+          {/* 📌 වෙනස්කම 1: යටින් එන Icons වලට ඉඩ දීම සඳහා pb-20 md:pb-32 එකතු කර ප්‍රධාන අකුරු මඳක් ඉහළට ගෙන ඇත */}
+          <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-4 max-w-4xl mx-auto pb-20 md:pb-32">
             <h1 className={`${customTravelFont.className} text-6xl md:text-9xl font-normal mb-4 tracking-wide drop-shadow-2xl text-white`}>
               {slide.title}
             </h1>
@@ -67,8 +66,10 @@ export default function HeroSlider() {
         </div>
       ))}
       
-      {/* Slider Controls */}
-      <div className="absolute bottom-8 z-30 flex space-x-3">
+      {/* Slider Controls (Dots) */}
+      {/* 📌 වෙනස්කම 2: bottom-[20%] md:bottom-32 වෙනුවට bottom-6 md:bottom-10 දමා ඇත. 
+          z-40 දැමුවේ යටින් එන කළු gradient එකට උඩින් මෙය click කළ හැකි වීමටයි. */}
+      <div className="absolute bottom-6 md:bottom-10 z-40 flex space-x-3">
         {slides.map((_, idx) => (
           <button
             key={idx}

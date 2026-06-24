@@ -2,17 +2,40 @@
   "multidayTours": [
     {
       "title": "Classic Sri Lanka",
+      "slug": "classic-sri-lanka",
       "price": 150,
       "duration": "7 Days",
-      "image": "/tours/multidays/c1.jpg",
+      "route": "Colombo to Colombo",
+      "routeImage": "/images/multiday/classic-route-map.png",
+      "image": "/images/multiday/classic-sri-lanka-main.png",
+      "imageAlt": "Beautiful landscapes and cultural sites in Sri Lanka",
       "gallery": [
-        "/tours/multidays/c1.jpg",
-        "/tours/multidays/c2.jpg",
-        "/tours/multidays/c3.jpg",
-        "/tours/multidays/c4.jpg",
-        "/tours/multidays/c5.jpg"
+        {
+          "url": "/images/multiday/c1.png",
+          "alt": "Colombo city street view"
+        },
+        {
+          "url": "/images/multiday/c2.png",
+          "alt": "Sigiriya Rock Fortress climbing path"
+        },
+        {
+          "url": "/images/multiday/c3.png",
+          "alt": "Temple of the Tooth Relic in Kandy"
+        },
+        {
+          "url": "/images/multiday/c4.png",
+          "alt": "Scenic train ride passing Ella tea plantations"
+        },
+        {
+          "url": "/images/multiday/c5.png",
+          "alt": "Yala National Park jeep safari elephant"
+        }
       ],
       "description": "Sri Lanka is a beautiful country. You will visit beaches, mountains and tea plantations. This journey takes you through breathtaking landscapes and authentic cultural encounters.",
+      "seo": {
+        "metaTitle": "Classic Sri Lanka 7-Day Tour | Best Vacation Packages",
+        "metaDescription": "Experience the best of Sri Lanka in 7 days. Visit Colombo, Kandy, Sigiriya, Ella, and Yala. Book your ultimate cultural and wildlife adventure today."
+      },
       "whyLove": [
         "Travel with an expert local guide who knows the hidden gems.",
         "Enjoy authentic local cuisine and cultural encounters.",
@@ -83,19 +106,27 @@
     },
     {
       "title": "TEST",
+      "slug": "test-tour-package",
       "price": 258,
       "duration": "TEST",
-      "image": "https://fastly.picsum.photos/id/162/200/300.jpg?hmac=j8KV0LSPmue8af4dmytyFqhoPlvcsudNYFaB_i5DINs",
+      "route": "Colombo to Galle",
+      "routeImage": "",
+      "image": "/images/multiday/test-tour-main.png",
+      "imageAlt": "Test tour main thumbnail image",
       "gallery": [],
       "description": "TESTTESTTESTTESTTESTTEST",
+      "seo": {
+        "metaTitle": "Test Tour Package | Demo SEO Title",
+        "metaDescription": "This is a test meta description for the sample tour package used for development."
+      },
       "whyLove": [
         "TESTTESTTEST"
       ],
       "inclusions": {
-        "destinations": "TEST TEST ",
-        "meals": "TEST TEST ",
-        "transport": "TEST TEST ",
-        "accommodation": "TEST TEST ",
+        "destinations": "TEST TEST",
+        "meals": "TEST TEST",
+        "transport": "TEST TEST",
+        "accommodation": "TEST TEST",
         "includedActivities": [
           "TEST TEST"
         ],
@@ -132,14 +163,28 @@
   "experiences": [
     {
       "title": "Kandy City Cultural Day Tour",
+      "slug": "kandy-city-cultural-day-tour",
       "price": 55,
       "duration": "1 Day",
-      "image": "https://images.unsplash.com/photo-1586220556108-72719ea2b6e1?q=80&w=1000&auto=format&fit=crop",
+      "route": "Kandy City Limits",
+      "routeImage": "/images/experiences/kandy-route-map.png",
+      "image": "/images/experiences/kandy-day-tour-main.png",
+      "imageAlt": "Tourists walking near the Kandy lake during a cultural day tour",
       "gallery": [
-        "https://images.unsplash.com/photo-1544015759-237f88e55f56?q=80&w=800",
-        "https://images.unsplash.com/photo-1517760444937-f6397edcfa8e?q=80&w=800"
+        {
+          "url": "/images/experiences/kandy-gal-1.png",
+          "alt": "Beautiful flowers in Peradeniya Botanical Gardens"
+        },
+        {
+          "url": "/images/experiences/kandy-gal-2.png",
+          "alt": "Traditional Kandyan dancers performing"
+        }
       ],
       "description": "Immerse yourself in the rich culture and history of Kandy with this comprehensive full-day guided tour.",
+      "seo": {
+        "metaTitle": "Kandy City Cultural Day Tour | Sri Lanka Day Trips",
+        "metaDescription": "Discover the heritage of Kandy in one day. Visit the Temple of the Tooth, Botanical Gardens, and enjoy authentic Sri Lankan food."
+      },
       "whyLove": [
         "Expert local guides throughout the journey",
         "Authentic local dining experiences"
@@ -185,19 +230,27 @@
     },
     {
       "title": "Day Test",
+      "slug": "day-test-experience",
       "price": 25,
-      "duration": "Day Test ",
-      "image": "https://fastly.picsum.photos/id/10/200/300.jpg",
+      "duration": "Day Test",
+      "route": "Test Route",
+      "routeImage": "",
+      "image": "/images/experiences/day-test-main.png",
+      "imageAlt": "Day test experience placeholder image",
       "gallery": [],
-      "description": "Day Test ",
+      "description": "Day Test description content.",
+      "seo": {
+        "metaTitle": "Day Test Experience | Excursions",
+        "metaDescription": "Test meta description for the day test experience package."
+      },
       "whyLove": [
         "Day Test Day Test Day Test Day Test"
       ],
       "inclusions": {
-        "destinations": "Day Test ",
-        "meals": "Day Test ",
-        "transport": "Day Test ",
-        "accommodation": "Day Test ",
+        "destinations": "Day Test",
+        "meals": "Day Test",
+        "transport": "Day Test",
+        "accommodation": "Day Test",
         "includedActivities": [
           "Day Test Day Test Day Test"
         ],
@@ -234,11 +287,19 @@
   "uniqueExperiences": [
     {
       "title": "Hot Air Ballooning in Dambulla",
+      "slug": "hot-air-ballooning-dambulla123",
       "price": 220,
       "duration": "4 Hours",
-      "image": "https://images.unsplash.com/photo-1549488344-c6a6f6424e86?q=80&w=1000&auto=format&fit=crop",
+      "route": "Dambulla Sky Route",
+      "routeImage": "/images/unique/balloon-route-map.png",
+      "image": "/images/unique/hot-air-balloon-main.png",
+      "imageAlt": "Hot air balloons flying over Dambulla landscape at sunrise",
       "gallery": [],
       "description": "Float peacefully over the cultural triangle at sunrise and witness the waking wildlife and ancient ruins from above.",
+      "seo": {
+        "metaTitle": "Hot Air Ballooning in Dambulla | Unique Sri Lanka Tours",
+        "metaDescription": "Experience a magical 1-hour hot air balloon flight over Dambulla. Enjoy breathtaking sunrise views and a champagne breakfast. Book now!"
+      },
       "whyLove": [
         "Breathtaking aerial views at sunrise",
         "Champagne breakfast upon landing"

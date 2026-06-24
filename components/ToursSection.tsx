@@ -1,4 +1,3 @@
-// src/components/ToursSection.tsx
 "use client";
 
 import { useRef, useState, useEffect } from "react";
@@ -94,9 +93,9 @@ export default function ToursSection() {
         </div>
         
         <AutoScrollCarousel direction="left" gridClass="md:grid-cols-3 lg:grid-cols-4">
-          {multidayTours?.map((tour, idx) => (
+          {multidayTours?.map((tour: any, idx: number) => (
             <Link 
-              href={`/tours/${slugify(tour.title)}`} 
+              href={`/tours/${tour.slug || slugify(tour.title)}`} 
               key={idx} 
               className="group relative flex-none w-[85%] sm:w-[45%] md:w-auto rounded-xl overflow-hidden flex flex-col justify-between p-6 shadow-md hover:shadow-2xl transition-all duration-300 h-72"
             >
@@ -124,7 +123,6 @@ export default function ToursSection() {
                     </div>
                     <div className="flex items-center gap-1.5 font-semibold text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                      {/* Price Update: Changed 'Rs' to '$' */}
                       <span>${tour.price || "150"}</span>
                     </div>
                   </div>
@@ -147,9 +145,9 @@ export default function ToursSection() {
         </div>
         
         <AutoScrollCarousel direction="right" gridClass="md:grid-cols-3 lg:grid-cols-4">
-          {experiences?.map((exp, idx) => (
+          {experiences?.map((exp: any, idx: number) => (
             <Link 
-              href={`/tours/${slugify(exp.title)}`} 
+              href={`/tours/${exp.slug || slugify(exp.title)}`} 
               key={idx} 
               className="group relative flex-none w-[85%] sm:w-[45%] md:w-auto rounded-xl overflow-hidden flex flex-col justify-between p-6 shadow-md hover:shadow-2xl transition-all duration-300 h-72"
             >
@@ -177,7 +175,6 @@ export default function ToursSection() {
                     </div>
                     <div className="flex items-center gap-1.5 font-semibold text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                      {/* Price Update: Changed 'Rs' to '$' */}
                       <span>${exp.price || "50"}</span>
                     </div>
                   </div>
@@ -200,9 +197,9 @@ export default function ToursSection() {
         </div>
         
         <AutoScrollCarousel direction="left" gridClass="md:grid-cols-3 lg:grid-cols-4">
-          {uniqueExperiences?.map((item, idx) => (
+          {uniqueExperiences?.map((item: any, idx: number) => (
             <Link 
-              href={`/tours/${slugify(item.title)}`} 
+              href={`/tours/${item.slug || slugify(item.title)}`} 
               key={idx} 
               className="group relative flex-none w-[85%] sm:w-[45%] md:w-auto rounded-xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col justify-between p-6 h-72"
             >
@@ -230,7 +227,6 @@ export default function ToursSection() {
                     </div>
                     <div className="flex items-center gap-1.5 font-semibold text-white">
                       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-                      {/* Price Update: Changed 'Rs' to '$' */}
                       <span>${item.price || "30"}</span>
                     </div>
                   </div>
