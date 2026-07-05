@@ -79,7 +79,7 @@ export default function Navbar() {
             <Link href="/blog" className={navBtnStyle}>Blog</Link>
             
             <div className="pl-2">
-              <Link href="/contact" className={contactBtnStyle}>
+              <Link href="/#contact" className={contactBtnStyle}>
                 Contact Us
               </Link>
             </div>
@@ -115,7 +115,7 @@ export default function Navbar() {
           <Link href="/gallery" onClick={() => setIsOpen(false)} className="block px-4 py-2 rounded-lg hover:bg-teal-50 hover:text-teal-700">Gallery</Link>
           <Link href="/blog" onClick={() => setIsOpen(false)} className="block px-4 py-2 rounded-lg hover:bg-teal-50 hover:text-teal-700">Blog</Link>
           <div className="pt-2 mt-2 border-t border-gray-100">
-            <Link href="/contact" onClick={() => setIsOpen(false)} className="block text-center bg-teal-900 text-white py-3 rounded-xl shadow-md hover:bg-teal-800 transition">Contact Us</Link>
+            <Link href="/#contact" onClick={() => setIsOpen(false)} className="block text-center bg-teal-900 text-white py-3 rounded-xl shadow-md hover:bg-teal-800 transition">Contact Us</Link>
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@
 import HeroSlider from "@/components/HeroSlider";
 import AboutUs from "@/components/AboutUs";
 import ToursSection from "@/components/ToursSection";
+import ContactUs from "@/components/ContactUs"; // ContactUs component එක import කිරීම
 import { User, Leaf, MapPin } from "lucide-react"; 
 
 export default function Home() {
@@ -70,6 +71,11 @@ export default function Home() {
       {/* 3. About Us Component */}
       <section id="about">
         <AboutUs />
+      </section>
+
+      {/* 4. Contact Us Component */}
+      <section id="contact">
+        <ContactUs />
       </section>
 
     </main>

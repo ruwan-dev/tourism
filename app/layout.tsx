@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 import { Poppins, Caveat } from "next/font/google";
 import "./globals.css";
 
-// Navbar සහ Preloader මෙතනින් Import කරගන්න
+// Navbar, Preloader සහ WhatsAppButton මෙතනින් Import කරගන්න
 import Navbar from "@/components/Navbar"; 
-import Preloader from "@/components/Preloader"; // අලුත් Preloader Component එක
+import Preloader from "@/components/Preloader"; 
+import WhatsAppButton from "@/components/WhatsAppButton"; // අලුතින් එකතු කළ WhatsApp බොත්තම
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -66,6 +67,9 @@ export default function RootLayout({
         <Navbar />
         
         {children}
+
+        {/* WhatsApp Floating බොත්තම වෙබ් අඩවියේ සෑම පිටුවකම පෙන්වීමට මෙහි ඇතුළත් කර ඇත */}
+        <WhatsAppButton />
       </body>
     </html>
   );
