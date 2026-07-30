@@ -1,343 +1,115 @@
 {
   "multidayTours": [
     {
-      "title": "Classic Sri Lanka",
-      "slug": "classic-sri-lanka",
-      "price": 150,
-      "duration": "7 Days",
-      "route": "Colombo to Colombo",
-      "routeImage": "/images/multiday/classic-route-map.png",
-      "image": "/images/multiday/classic-sri-lanka-main.png",
-      "imageAlt": "Beautiful landscapes and cultural sites in Sri Lanka",
+      "title": "Sri Lanka Highlights -11 Days - 10 Nights",
+      "slug": "sri-lanka-highlights-11-days-10-nights",
+      "price": 2200,
+      "duration": "",
+      "route": "Negombo -Dambulla- Kandy- Nuwara eliya - Ella - Miirissa - Colombo",
+      "routeImage": "/images/multiday/multiday/map/Classic Sri Lanka.png",
+      "image": "/images/multiday/classicsrilanka.png",
+      "imageAlt": "best of sri lanka round tour",
       "gallery": [
         {
-          "url": "/images/multiday/c1.png",
-          "alt": "Colombo city street view"
+          "url": "/images/multiday/Beach.png",
+          "alt": "Negombo beach"
         },
         {
-          "url": "/images/multiday/c2.png",
-          "alt": "Sigiriya Rock Fortress climbing path"
+          "url": "/images/multiday/Toddy tapping.png",
+          "alt": "Toddy tapping Sri Lanka"
         },
         {
-          "url": "/images/multiday/c3.png",
-          "alt": "Temple of the Tooth Relic in Kandy"
+          "url": "/images/multiday/Village Tour.png",
+          "alt": "village life Sri Lanka"
         },
         {
-          "url": "/images/multiday/c4.png",
-          "alt": "Scenic train ride passing Ella tea plantations"
+          "url": "/images/multiday/Dambulla Cave temple.png",
+          "alt": "Dambulla Cave Temple"
         },
         {
-          "url": "/images/multiday/c5.png",
-          "alt": "Yala National Park jeep safari elephant"
+          "url": "/images/multiday/Sigiriya.png",
+          "alt": "Sigirya / Lion rock"
+        },
+        {
+          "url": "/images/multiday/elephant safari.png",
+          "alt": "habarana elephant safari/ minneriya national park"
+        },
+        {
+          "url": "/images/multiday/vegetable market.png",
+          "alt": "dambulla vegetable market visit"
+        },
+        {
+          "url": "/images/multiday/temple of the tooth.png",
+          "alt": "kandy tooth relic temple"
+        },
+        {
+          "url": "/images/multiday/Tea plantation.png",
+          "alt": "ceylon tea plantation nuwaraeliya"
+        },
+        {
+          "url": "/images/multiday/high tea.png",
+          "alt": "grand hotel nuwaraeliya high tea"
+        },
+        {
+          "url": "/images/multiday/waterfall.png",
+          "alt": "Ramboda Falls"
+        },
+        {
+          "url": "/images/multiday/Train ride.png",
+          "alt": "kandy to ella train"
+        },
+        {
+          "url": "/images/multiday/Hike.png",
+          "alt": "Little Adams peak"
+        },
+        {
+          "url": "/images/multiday/Galle fort.png",
+          "alt": "galle dutch fort"
+        },
+        {
+          "url": "/images/multiday/Pettah market.png",
+          "alt": "pettah market red mosque colombo"
         }
       ],
-      "description": "Sri Lanka is a beautiful country. You will visit beaches, mountains and tea plantations. This journey takes you through breathtaking landscapes and authentic cultural encounters.",
+      "description": "Discover a country where ancient civilizations, lush landscapes, and vibrant communities come together to create unforgettable experiences. Our Sri Lanka Highlights Tour is thoughtfully designed for travelers who want to see the island's iconic attractions while gaining a genuine understanding of its people, traditions, and way of life.\n\nTravel through centuries of history as you explore sacred temples, ancient kingdoms, and magnificent fortresses that tell the story of one of Asia's oldest civilizations. Journey into the cool tea-covered hills, admire cascading waterfalls, and experience one of the world's most scenic train rides before unwinding on the island's beautiful southern coastline.\nAlong the way, you'll enjoy authentic Sri Lankan cuisine, meet welcoming local communities, and experience traditions that continue to shape everyday life. Every destination has been carefully chosen to balance famous landmarks with meaningful cultural encounters and breathtaking natural beauty.\n\nYour comfort is equally important. Stay in a handpicked selection of quality hotels, from comfortable 3-star properties to charming boutique accommodations that reflect the character of each region. Throughout your journey, you'll be accompanied by experienced licensed tour guides who share not only the history of each destination but also the stories, customs, and local insights that bring Sri Lanka to life.\n\nThis is more than a sightseeing holiday. It is an opportunity to connect with the island, understand its heritage, appreciate its diverse landscapes, and return home with memories that go beyond photographs.\nWhether it is your first visit or a long-awaited journey, this tour offers a carefully curated introduction to the very best of Sri Lanka.",
       "seo": {
-        "metaTitle": "Classic Sri Lanka 7-Day Tour | Best Vacation Packages",
-        "metaDescription": "Experience the best of Sri Lanka in 7 days. Visit Colombo, Kandy, Sigiriya, Ella, and Yala. Book your ultimate cultural and wildlife adventure today."
+        "metaTitle": "Sri Lanka highlights - 11 Days- 10 NIghts",
+        "metaDescription": "Experience the best of Sri Lanka through its rich heritage, spectacular landscapes, authentic local life, and carefully crafted journeys. From scenic train rides to boutique stays and meaningful cultural encounters, discover a holiday that leaves you with a deeper connection to the island."
       },
       "whyLove": [
-        "Travel with an expert local guide who knows the hidden gems.",
-        "Enjoy authentic local cuisine and cultural encounters.",
-        "Flexible booking with free cancellation options."
+        "Go beyond sightseeing and connect with the island’s people, traditions, cuisine, and everyday way of life through authentic cultural experiences.",
+        "Explore the remnants of fallen kingdoms, sacred temples, historic sites, and legendary fortresses that showcase the island’s rich cultural legacy spanning over 2,500 years.",
+        "Experience diverse landscapes, waterfalls, forests, and incredible wildlife in one unforgettable journey.",
+        "Enjoy a well-paced journey combining heritage exploration, nature experiences, scenic travel, beach relaxation, and meaningful encounters.",
+        "This journey is designed to give you a deeper understanding of Sri Lanka—its landscapes, communities, traditions, and the stories that make the island special."
       ],
       "inclusions": {
-        "destinations": "Sri Lanka",
-        "meals": "6 breakfasts, 1 lunch, 1 dinner",
-        "transport": "Private Bus, Public Bus, Train",
-        "accommodation": "Hotel (6 nights)",
+        "destinations": "",
+        "meals": "",
+        "transport": "",
+        "accommodation": "",
         "includedActivities": [
-          "Colombo - City Tour",
-          "Kandy - Temple of the Tooth",
-          "Sigiriya - Rock Fortress Climb",
-          "Ella - Train Ride"
-        ],
-        "optionalActivities": [
-          "Yala - Safari - $40",
-          "Mirissa - Whale Watching - $35"
-        ]
-      },
-      "beforeYouBook": {
-        "rightForYou": [
-          "You'll need to carry your bags on and off local trams and trains. The distances aren't far, but be aware of cobblestone streets.",
-          "This trip uses a combination of public and private transport. All vehicles are modern and have air-conditioning.",
-          "This is a relatively fast-paced trip that will allow you to see the highlights in a short period."
-        ],
-        "visas": [
-          "Most nationalities require a visa to enter Sri Lanka. Please check with your local embassy."
-        ],
-        "accommodation": [
-          "Hotels are carefully selected to provide a comfortable stay. Wi-Fi is available in most locations."
-        ],
-        "joiningPoint": [
-          "The trip starts at our base hotel in Colombo at 6:00 PM on Day 1."
-        ]
-      },
-      "itinerary": [
-        {
-          "title": "Day 1: Arrive in Colombo",
-          "desc": "Welcome to Sri Lanka! Relax at the hotel or take an optional evening city tour to experience the vibrant street life of Colombo."
-        },
-        {
-          "title": "Day 2: Sigiriya Rock Fortress",
-          "desc": "Today we travel to the cultural triangle to climb the ancient Sigiriya Rock Fortress, an astonishing feat of engineering and art."
-        },
-        {
-          "title": "Day 3: Kandy & Temple of the Tooth",
-          "desc": "Journey to the hill capital, Kandy. Visit the sacred Temple of the Tooth Relic and enjoy a relaxing walk around the Kandy lake."
-        },
-        {
-          "title": "Day 4: Scenic Train to Ella",
-          "desc": "Experience one of the most beautiful train rides in the world, passing through lush green tea plantations and misty mountains to reach Ella."
-        },
-        {
-          "title": "Day 5: Yala National Park",
-          "desc": "Head down to the southern coast. In the afternoon, you have thrilling jeep safari in Yala National Park."
-        },
-        {
-          "title": "Day 6: Mirissa Beach",
-          "desc": "Relax on the golden sands of Mirissa. Opt for an early morning whale watching tour or simply enjoy the tropical sunset."
-        },
-        {
-          "title": "Day 7: Return to Colombo",
-          "desc": "After a final morning by the beach, we head back to Colombo where our classic Sri Lankan adventure comes to an end."
-        }
-      ]
-    },
-    {
-      "title": "TEST",
-      "slug": "test-tour-package",
-      "price": 258,
-      "duration": "TEST",
-      "route": "Colombo to Galle",
-      "routeImage": "",
-      "image": "/images/multiday/test-tour-main.png",
-      "imageAlt": "Test tour main thumbnail image",
-      "gallery": [],
-      "description": "TESTTESTTESTTESTTESTTEST",
-      "seo": {
-        "metaTitle": "Test Tour Package | Demo SEO Title",
-        "metaDescription": "This is a test meta description for the sample tour package used for development."
-      },
-      "whyLove": [
-        "TESTTESTTEST"
-      ],
-      "inclusions": {
-        "destinations": "TEST TEST",
-        "meals": "TEST TEST",
-        "transport": "TEST TEST",
-        "accommodation": "TEST TEST",
-        "includedActivities": [
-          "TEST TEST"
-        ],
-        "optionalActivities": [
-          "TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST"
-        ]
-      },
-      "beforeYouBook": {
-        "rightForYou": [
-          "TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST"
-        ],
-        "visas": [
-          "TEST TEST TEST TEST TEST TEST TEST TEST"
-        ],
-        "accommodation": [
-          "TEST TEST TEST TEST TEST TEST"
-        ],
-        "joiningPoint": [
-          "TEST TEST TEST TEST TEST TEST"
-        ]
-      },
-      "itinerary": [
-        {
-          "title": "TEST TEST",
-          "desc": "TEST TEST TEST TEST TEST TEST"
-        },
-        {
-          "title": "TEST TEST TEST TEST",
-          "desc": "TEST TEST TEST TEST"
-        }
-      ]
-    }
-  ],
-  "experiences": [
-    {
-      "title": "Kandy City Cultural Day Tour",
-      "slug": "kandy-city-cultural-day-tour",
-      "price": 55,
-      "duration": "1 Day",
-      "route": "Kandy City Limits",
-      "routeImage": "/images/experiences/kandy-route-map.png",
-      "image": "/images/experiences/kandy-day-tour-main.png",
-      "imageAlt": "Tourists walking near the Kandy lake during a cultural day tour",
-      "gallery": [
-        {
-          "url": "/images/experiences/kandy-gal-1.png",
-          "alt": "Beautiful flowers in Peradeniya Botanical Gardens"
-        },
-        {
-          "url": "/images/experiences/kandy-gal-2.png",
-          "alt": "Traditional Kandyan dancers performing"
-        }
-      ],
-      "description": "Immerse yourself in the rich culture and history of Kandy with this comprehensive full-day guided tour.",
-      "seo": {
-        "metaTitle": "Kandy City Cultural Day Tour | Sri Lanka Day Trips",
-        "metaDescription": "Discover the heritage of Kandy in one day. Visit the Temple of the Tooth, Botanical Gardens, and enjoy authentic Sri Lankan food."
-      },
-      "whyLove": [
-        "Expert local guides throughout the journey",
-        "Authentic local dining experiences"
-      ],
-      "inclusions": {
-        "destinations": "Kandy City",
-        "meals": "Traditional Sri Lankan Lunch",
-        "transport": "Tuk Tuk / Mini Van",
-        "accommodation": "Not Included (Day Tour)",
-        "includedActivities": [
-          "Guided city walk",
-          "Botanical Gardens entrance"
-        ],
-        "optionalActivities": [
-          "Gem museum tour"
-        ]
-      },
-      "beforeYouBook": {
-        "rightForYou": [
-          "Easy walking pace.",
-          "Great for photography enthusiasts."
-        ],
-        "visas": [
-          "Valid Sri Lankan tourist visa required."
-        ],
-        "accommodation": [
-          "Not applicable for day experiences."
-        ],
-        "joiningPoint": [
-          "Your hotel lobby in Kandy City"
-        ]
-      },
-      "itinerary": [
-        {
-          "title": "09:00 AM: Pick up",
-          "desc": "Meet your guide at the hotel and start the tour."
-        },
-        {
-          "title": "12:30 PM: Lunch",
-          "desc": "Enjoy a spicy and delicious traditional Sri Lankan rice and curry."
-        }
-      ]
-    },
-    {
-      "title": "Day Test",
-      "slug": "day-test-experience",
-      "price": 25,
-      "duration": "Day Test",
-      "route": "Test Route",
-      "routeImage": "",
-      "image": "/images/experiences/day-test-main.png",
-      "imageAlt": "Day test experience placeholder image",
-      "gallery": [],
-      "description": "Day Test description content.",
-      "seo": {
-        "metaTitle": "Day Test Experience | Excursions",
-        "metaDescription": "Test meta description for the day test experience package."
-      },
-      "whyLove": [
-        "Day Test Day Test Day Test Day Test"
-      ],
-      "inclusions": {
-        "destinations": "Day Test",
-        "meals": "Day Test",
-        "transport": "Day Test",
-        "accommodation": "Day Test",
-        "includedActivities": [
-          "Day Test Day Test Day Test"
-        ],
-        "optionalActivities": [
-          "Day Test Day Test Day Test Day Test Day Test"
-        ]
-      },
-      "beforeYouBook": {
-        "rightForYou": [
-          "Day Test Day Test Day Test"
-        ],
-        "visas": [
-          "Day Test Day Test Day Test Day Test"
-        ],
-        "accommodation": [
-          "Day Test Day Test Day Test Day Test"
-        ],
-        "joiningPoint": [
-          "Day Test Day Test Day Test Day Test"
-        ]
-      },
-      "itinerary": [
-        {
-          "title": "Day Test Day Test Day Test",
-          "desc": "Day Test Day Test Day Test"
-        },
-        {
-          "title": "Day Test Day Test Day Test",
-          "desc": "Day Test Day Test Day Test Day Test"
-        }
-      ]
-    }
-  ],
-  "uniqueExperiences": [
-    {
-      "title": "Hot Air Ballooning in Dambulla",
-      "slug": "hot-air-ballooning-dambulla123",
-      "price": 220,
-      "duration": "4 Hours",
-      "route": "Dambulla Sky Route",
-      "routeImage": "/images/unique/balloon-route-map.png",
-      "image": "/images/unique/hot-air-balloon-main.png",
-      "imageAlt": "Hot air balloons flying over Dambulla landscape at sunrise",
-      "gallery": [],
-      "description": "Float peacefully over the cultural triangle at sunrise and witness the waking wildlife and ancient ruins from above.",
-      "seo": {
-        "metaTitle": "Hot Air Ballooning in Dambulla | Unique Sri Lanka Tours",
-        "metaDescription": "Experience a magical 1-hour hot air balloon flight over Dambulla. Enjoy breathtaking sunrise views and a champagne breakfast. Book now!"
-      },
-      "whyLove": [
-        "Breathtaking aerial views at sunrise",
-        "Champagne breakfast upon landing"
-      ],
-      "inclusions": {
-        "destinations": "Dambulla",
-        "meals": "Champagne Breakfast",
-        "transport": "Hotel pickup and drop-off",
-        "accommodation": "None",
-        "includedActivities": [
-          "1-hour hot air balloon flight"
+          "•\tAccommodation at 3 star, boutique and heritage type hotels",
+          "•\tEntrance tickets to included sites (Lions Rock, Temple of the tooth, Cave temple, Polonnaruwa)",
+          "•\tVillage tour",
+          "•\tHigh tea at Grand Hotel Nuwaraeliya",
+          "•\tElephant Safari at Habarana – all related costs included for 2.5 - 3-hour safari",
+          "•\tAir-conditioned Van for entire tour",
+          "•\tTrain tickets from Ambewela to Ella (We will try our best to reserve seats. But we can’t assure due to high demand in the peak season)",
+          "•\tAirport Pickup and Drop",
+          "•\tService of Licensed Tour Guide"
         ],
         "optionalActivities": []
       },
       "beforeYouBook": {
-        "rightForYou": [
-          "Requires standing for approximately one hour."
-        ],
-        "visas": [
-          "Standard tourist visa."
-        ],
-        "accommodation": [
-          "Not applicable."
-        ],
-        "joiningPoint": [
-          "Any hotel in the Dambulla/Habarana area"
-        ]
+        "rightForYou": [],
+        "visas": [],
+        "accommodation": [],
+        "joiningPoint": []
       },
-      "itinerary": [
-        {
-          "title": "05:00 AM: Hotel Pickup",
-          "desc": "Early morning pickup to catch the perfect sunrise."
-        },
-        {
-          "title": "06:00 AM: Take Off",
-          "desc": "Gently lift off into the morning sky for a 1-hour magical flight."
-        }
-      ]
+      "itinerary": []
     }
-  ]
+  ],
+  "experiences": [],
+  "uniqueExperiences": []
 }
